@@ -8,7 +8,8 @@ import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
 import { FormLabel, Spacer } from './styles';
-import { styles as globalStyles } from 'styles';
+import * as S from './styles';
+import * as GS from 'styles';
 
 const radioOptions = [
   {
@@ -62,13 +63,13 @@ export const HomeScreen = (props) => {
 
   console.log({ testData });
   return (
-    <View style={[globalStyles.container, { justifyContent: 'space-between' }]}>
+    <GS.ScreenContainer style={{ justifyContent: 'space-between' }}>
       <View>
-        <Text style={globalStyles.heading}>Select Your Trivia</Text>
+        <GS.Heading>Select Your Trivia</GS.Heading>
 
-        <FormLabel>Your Name</FormLabel>
+        <S.FormLabel>Your Name</S.FormLabel>
         <TextInput onChangeText={handleOnChangeText} />
-        <Spacer size={20} />
+        <S.Spacer size={20} />
 
         <FormLabel>Total Questions</FormLabel>
         <SegmentedControl
@@ -79,7 +80,7 @@ export const HomeScreen = (props) => {
             setQuestionCount(event.nativeEvent.selectedSegmentIndex)
           }
         />
-        <Spacer size={20} />
+        <S.Spacer size={20} />
 
         <FormLabel>Select Category</FormLabel>
         <RadioGroup
@@ -87,7 +88,7 @@ export const HomeScreen = (props) => {
           onSelect={setCategory}
           options={radioOptions}
         />
-        <Spacer size={20} />
+        <S.Spacer size={20} />
 
         <FormLabel>Difficulty Level</FormLabel>
         <SegmentedControl
@@ -112,6 +113,6 @@ export const HomeScreen = (props) => {
           )}
         </Button>
       </View>
-    </View>
+    </GS.ScreenContainer>
   );
 };
