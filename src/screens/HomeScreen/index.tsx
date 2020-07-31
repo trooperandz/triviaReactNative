@@ -50,7 +50,11 @@ export const HomeScreen = (props) => {
 
   const handleSetQuestions = () => {
     setIsLoading(true);
-
+    const requestParams = {
+      amount: questionCount,
+      category,
+      difficulty: difficultyLevel,
+    };
     setTimeout(() => {
       navigation.navigate('Questions');
       // setIsLoading(false);
