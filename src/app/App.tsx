@@ -4,9 +4,7 @@ import { SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { Navigation as RootNavigation } from '../navigations';
-import { configureStore } from 'redux/store';
-
-const store = configureStore();
+import store from './store';
 
 const App = () => {
   return (
