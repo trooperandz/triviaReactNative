@@ -46,7 +46,8 @@ export const HomeScreen = (props) => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
 
-  const testData = useSelector((state) => state.test);
+  const app = useSelector((state) => state.app);
+  console.log({ app });
 
   const handleSetQuestions = () => {
     setIsLoading(true);
@@ -65,7 +66,6 @@ export const HomeScreen = (props) => {
     console.log({ text });
   };
 
-  console.log({ testData });
   return (
     <GS.ScreenContainer style={{ justifyContent: 'space-between' }}>
       <View>

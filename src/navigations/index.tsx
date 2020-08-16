@@ -12,7 +12,11 @@ export const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'TriviaCraze' }}
+        />
         <Stack.Screen name="Questions" component={QuestionsScreen} />
         <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
