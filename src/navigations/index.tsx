@@ -2,8 +2,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeScreen } from 'screens/HomeScreen';
-import { QuestionsScreen } from 'screens/QuestionsScreen';
+// import { HomeScreen } from 'screens/HomeScreen';
+import HomeScreen from '@features/app/screens/HomeScreen';
+import { QuestionsScreen } from '@features/questions/screens/QuestionsScreen';
 import { ResultsScreen } from 'screens/ResultsScreen';
 
 const Stack = createStackNavigator();
@@ -17,7 +18,11 @@ export const Navigation = () => {
           component={HomeScreen}
           options={{ title: 'TriviaCraze' }}
         />
-        <Stack.Screen name="Questions" component={QuestionsScreen} />
+        <Stack.Screen
+          name="Questions"
+          component={QuestionsScreen}
+          options={{ headerBackTitle: 'Home' }}
+        />
         <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

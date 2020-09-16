@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { View, ActivityIndicator } from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
 
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
-import { FormLabel, Spacer } from './styles';
+import { getTriviaQuestions } from 'features/questions/questionsSlice';
 import * as S from './styles';
 import * as GS from 'styles';
 
@@ -34,32 +34,33 @@ const radioOptions = [
   },
 ];
 
-export const HomeScreen = (props) => {
+const questionCountOptions = ['5', '10', '15', '20'];
+const difficultyLevelOptions = ['easy', 'medium', 'hard'];
+
+const HomeScreen = (props) => {
   const { navigation } = props;
 
   const [questionCount, setQuestionCount] = useState(5);
   const [difficultyLevel, setDifficultyLevel] = useState(5);
-  const [category, setCategory] = useState(undefined);
+  const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
 
-  const app = useSelector((state) => state.app);
-  console.log({ app });
-
-  const handleSetQuestions = () => {
+  const handleOnPressSubmit = () => {
     setIsLoading(true);
     const requestParams = {
-      amount: questionCount,
+      amount: questionCountOptions[questionCount],
       category,
-      difficulty: difficultyLevel,
+      difficulty: difficultyLevelOptions[difficultyLevel],
     };
-    setTimeout(() => {
-      navigation.navigate('Questions');
-      // setIsLoading(false);
-    }, 2000);
+
+    dispatch(
+      getTriviaQuestions(requestParams, () => navigation.navigate('Questions')),
+    );
   };
 
   const handleOnChangeText = (text) => {
@@ -75,9 +76,9 @@ export const HomeScreen = (props) => {
         <TextInput onChangeText={handleOnChangeText} />
         <S.Spacer size={20} />
 
-        <FormLabel>Total Questions</FormLabel>
+        <S.FormLabel>Total Questions</S.FormLabel>
         <SegmentedControl
-          values={['5', '10', '15', '20']}
+          values={questionCountOptions}
           selectedIndex={questionCount}
           activeTextColor="#51a7f9"
           onChange={(event) =>
@@ -86,7 +87,7 @@ export const HomeScreen = (props) => {
         />
         <S.Spacer size={20} />
 
-        <FormLabel>Select Category</FormLabel>
+        <S.FormLabel>Select Category</S.FormLabel>
         <RadioGroup
           selectedValue={category}
           onSelect={setCategory}
@@ -94,9 +95,9 @@ export const HomeScreen = (props) => {
         />
         <S.Spacer size={20} />
 
-        <FormLabel>Difficulty Level</FormLabel>
+        <S.FormLabel>Difficulty Level</S.FormLabel>
         <SegmentedControl
-          values={['Easy', 'Medium', 'Hard']}
+          values={difficultyLevelOptions}
           selectedIndex={difficultyLevel}
           activeTextColor="#51a7f9"
           onChange={(event) =>
@@ -105,7 +106,7 @@ export const HomeScreen = (props) => {
         />
       </View>
       <View>
-        <Button onPress={handleSetQuestions}>
+        <Button onPress={handleOnPressSubmit}>
           {isLoading ? (
             <ActivityIndicator
               style={{ marginTop: 6 }}
@@ -120,3 +121,5 @@ export const HomeScreen = (props) => {
     </GS.ScreenContainer>
   );
 };
+
+export default HomeScreen;

@@ -5,6 +5,8 @@ export const FormLabel = styled.Text`
   font-size: 18px;
 `;
 
-export const Spacer = styled.View`
-  margin-vertical: ${(props) => props.size}px;
+export const Spacer = styled.View.attrs((props) => ({
+  size: props.size,
+}))`
+  margin: ${(props) => props.size}px 0;
 `;

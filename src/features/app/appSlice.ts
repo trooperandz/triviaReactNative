@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  app: '',
+  error: '',
+  user: '',
 };
 
 const app = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setUser(state, action) {
-      state.user = action.payload.user;
+    setGlobalError(state, action) {
+      state.error = action.payload.error;
     },
   },
 });
 
-export const { setUser } = app.actions;
+export const { setGlobalError } = app.actions;
 
 export default app.reducer;
