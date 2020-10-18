@@ -14,23 +14,30 @@ const questions = createSlice({
     receiveTriviaQuestions(state, action) {
       state.questions = action.payload.questions;
     },
+    updateTriviaQuestions(state, action) {
+      const { index, value, callback } = action.payload;
+      // @ts-ignore
+      state.questions[index].selected_answer = value;
+      callback && callback();
+    },
   },
 });
 
-export const { receiveTriviaQuestions } = questions.actions;
+export const {
+  receiveTriviaQuestions,
+  updateTriviaQuestions,
+} = questions.actions;
 
 export const getTriviaQuestions = (params: any, callback?: () => void) => {
   return async (dispatch: Dispatch) => {
     try {
       const response = await triviaAPI.get('/', { params });
-      console.log(response.data);
+
       if (!response.data) {
         throw new Error('Sorry, the API did not send back any data.');
       }
 
       const { data: { response_code: responseCode, results } = {} } = response;
-      console.log({ results });
-      console.log({ responseCode });
 
       // Response code 0 is success
       if (responseCode !== 0) {

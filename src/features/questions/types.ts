@@ -7,3 +7,7 @@ export type Question = {
   incorrect_answers: string[];
   selected_answer?: string;
 };
+
+export type State = {
+  questions: Array<Question>;
+};

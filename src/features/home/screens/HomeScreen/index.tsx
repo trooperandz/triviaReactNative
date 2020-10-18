@@ -11,7 +11,7 @@ import { getTriviaQuestions } from 'features/questions/questionsSlice';
 import * as S from './styles';
 import * as GS from 'styles';
 
-const radioOptions = [
+const defaultRadioOptions = [
   {
     title: 'General Knowledge',
     value: '9',
@@ -42,10 +42,11 @@ const HomeScreen = (props) => {
 
   const [questionCount, setQuestionCount] = useState(5);
   const [difficultyLevel, setDifficultyLevel] = useState(5);
+  const [radioOptions, setRadioOptions] = useState(defaultRadioOptions);
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-
+  console.log({ radioOptions });
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
@@ -61,6 +62,13 @@ const HomeScreen = (props) => {
     dispatch(
       getTriviaQuestions(requestParams, () => navigation.navigate('Questions')),
     );
+  };
+
+  const handleOnPressRadio = (value: string, index: number) => {
+    console.log({ value, index });
+    const newOptions = [...radioOptions];
+    newOptions[index].selected_answer = value;
+    setRadioOptions(newOptions);
   };
 
   const handleOnChangeText = (text) => {
@@ -88,11 +96,7 @@ const HomeScreen = (props) => {
         <S.Spacer size={20} />
 
         <S.FormLabel>Select Category</S.FormLabel>
-        <RadioGroup
-          selectedValue={category}
-          onSelect={setCategory}
-          options={radioOptions}
-        />
+        <RadioGroup onSelect={handleOnPressRadio} options={radioOptions} />
         <S.Spacer size={20} />
 
         <S.FormLabel>Difficulty Level</S.FormLabel>

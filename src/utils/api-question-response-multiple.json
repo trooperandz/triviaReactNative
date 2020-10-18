@@ -1,0 +1,84 @@
+{
+  "questions": [
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Gold",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "Au on the Periodic Table refers to which element?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Beryllium",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "All the following metal elements are liquids at or near room temperature EXCEPT:",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Reactivity",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "What does the yellow diamond on the NFPA 704 fire diamond represent?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Honey Fungus",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "What is the largest living organism currently known to man?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Gustatory Perception",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "What is the scientific term for &#039;taste&#039;?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Knee",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "The medial meniscus forms which part of what joint in the human body?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Female Flower",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "Which portion of the Marijuana plant produces the psychoactive substance known as THC?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "Blue",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "Which color cannot be produced in Roses, even through genetic alteration?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "C18H27NO3",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "What is the molecular formula of the active component of chili peppers(Capsaicin)?",
+      "type": "multiple"
+    },
+    {
+      "category": "Science & Nature",
+      "correct_answer": "1996",
+      "difficulty": "medium",
+      "incorrect_answers": [Array],
+      "question": "When was the first mammal successfully cloned?",
+      "type": "multiple"
+    }
+  ]
+}

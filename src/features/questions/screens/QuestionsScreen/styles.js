@@ -14,7 +14,7 @@ export const QuestionContainer = styled.View.attrs((props) => ({
 `;
 
 export const QuestionWrapper = styled.View`
-  flex-direction: row;
+  /* flex-direction: row; */
   flex: 1;
 `;
 
@@ -41,7 +41,7 @@ export const PaginationDot = styled.View.attrs((props) => ({
 `;
 
 export const Question = styled.Text`
-  flex: 1;
   flex-wrap: wrap;
   font-size: 20px;
+  margin-bottom: 24px;
 `;

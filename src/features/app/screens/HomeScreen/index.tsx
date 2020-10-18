@@ -13,7 +13,7 @@ import * as GS from 'styles';
 
 const { styles } = S;
 
-const radioOptions = [
+const defaultRadioOptions = [
   {
     title: 'General Knowledge',
     value: '9',
@@ -44,10 +44,11 @@ const HomeScreen = (props) => {
 
   const [questionCount, setQuestionCount] = useState(0);
   const [difficultyLevel, setDifficultyLevel] = useState(0);
+  const [radioOptions, setRadioOptions] = useState(defaultRadioOptions);
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-
+  console.log('test');
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
@@ -66,6 +67,14 @@ const HomeScreen = (props) => {
         setIsLoading(false);
       }),
     );
+  };
+
+  const handleOnPressRadio = (value: string, index: number) => {
+    console.log({ value, index });
+    const newOptions = [...radioOptions];
+    newOptions.map((option) => (option.selected_answer = ''));
+    newOptions[index].selected_answer = value;
+    setRadioOptions(newOptions);
   };
 
   const handleOnChangeText = (text) => {
@@ -94,11 +103,7 @@ const HomeScreen = (props) => {
           <S.Spacer size={20} />
 
           <S.FormLabel>Select Category</S.FormLabel>
-          <RadioGroup
-            selectedValue={category}
-            onSelect={setCategory}
-            options={radioOptions}
-          />
+          <RadioGroup onSelect={handleOnPressRadio} options={radioOptions} />
           <S.Spacer size={20} />
 
           <S.FormLabel>Difficulty Level</S.FormLabel>
