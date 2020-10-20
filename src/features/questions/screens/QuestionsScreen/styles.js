@@ -78,10 +78,12 @@ export const ButtonWrapper = styled.View`
 
 export const styles = StyleSheet.create({
   buttonWrapper: {
+    position: 'absolute',
+    bottom: 50,
     flex: 1,
     width: 160,
     alignSelf: 'center',
-    marginTop: 32,
+    // marginTop: 32,
   },
   button: {
     width: '100%',

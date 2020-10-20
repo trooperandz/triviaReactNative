@@ -25,6 +25,7 @@ const LeftArrowIcon = () => (
 
 export const QuestionsScreen = () => {
   const [pageIndex, setPageIndex] = useState(0);
+  const [totalAnswered, setTotalAnswered] = useState(0);
   const dispatch = useDispatch();
   const scrollContainerRef = useRef<ScrollView>(null);
   const { width, height } = Dimensions.get('window');
@@ -53,7 +54,10 @@ export const QuestionsScreen = () => {
   };
 
   const onSelect = (value: string, index: number) => {
-    console.log({ value, index });
+    if (totalAnswered < questions.length) {
+      setTotalAnswered(totalAnswered + 1);
+    }
+
     dispatch(
       updateSelectedAnswer(index, value, () =>
         setTimeout(handleNextPress, 850),
@@ -93,21 +97,19 @@ export const QuestionsScreen = () => {
                     options={options}
                     questionIndex={i}
                   />
-                  {pageIndex === questions.length - 1 ? (
-                    <FadeInView style={styles.buttonWrapper}>
-                      {/* <S.ButtonWrapper> */}
-                      <Button type="secondary" style={styles.button}>
-                        Submit
-                      </Button>
-                      {/* </S.ButtonWrapper> */}
-                    </FadeInView>
-                  ) : null}
                 </S.QuestionWrapper>
               </GS.ScreenContainer>
             </S.QuestionContainer>
           );
         })}
       </ScrollContainer>
+      {totalAnswered === questions.length ? (
+        <FadeInView style={styles.buttonWrapper}>
+          <Button type="secondary" style={styles.button}>
+            Submit
+          </Button>
+        </FadeInView>
+      ) : null}
       {pageIndex > 0 ? (
         <S.LeftButton onPress={handlePreviousPress}>
           <LeftArrowIcon />
