@@ -2,15 +2,26 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components/native';
 import { Dimensions, ScrollView, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { Icon } from 'react-native-eva-icons';
 import { AllHtmlEntities } from 'html-entities';
 
+import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
-import { updateTriviaQuestions } from 'features/questions/questionsSlice';
+import { Button } from 'components/Button';
+import { updateSelectedAnswer } from 'features/questions/questionsSlice';
 import { Question } from '../../types';
 import * as GS from 'styles';
 import * as S from './styles';
 
+const { styles } = S;
+
 const entities = new AllHtmlEntities();
+const RightArrowIcon = () => (
+  <Icon name="chevron-right-outline" width={32} height={32} fill="#fff" />
+);
+const LeftArrowIcon = () => (
+  <Icon name="chevron-left-outline" width={32} height={32} fill="#fff" />
+);
 
 export const QuestionsScreen = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -29,19 +40,24 @@ export const QuestionsScreen = () => {
     }
   };
 
-  const handleNexPress = () => {
+  const handleNextPress = () => {
     if (pageIndex < questions.length - 1 && scrollContainerRef?.current) {
       scrollContainerRef.current.scrollTo({ x: width * (pageIndex + 1) });
     }
   };
 
+  const handlePreviousPress = () => {
+    if (pageIndex > 0 && scrollContainerRef?.current) {
+      scrollContainerRef.current.scrollTo({ x: width * (pageIndex - 1) });
+    }
+  };
+
   const onSelect = (value: string, index: number) => {
+    console.log({ value, index });
     dispatch(
-      updateTriviaQuestions({
-        index,
-        value,
-        callback: setTimeout(handleNexPress, 850),
-      }),
+      updateSelectedAnswer(index, value, () =>
+        setTimeout(handleNextPress, 850),
+      ),
     );
   };
 
@@ -60,15 +76,13 @@ export const QuestionsScreen = () => {
             ...question.incorrect_answers,
             question.correct_answer,
           ].map((item) => {
-            console.log('selected_answer: ', question.selected_answer);
-            console.log('boolean test: ', question.selected_answer === item);
             return {
               title: item.toUpperCase(),
               value: item,
               selected_answer: question.selected_answer === item ? item : '',
             };
           });
-          console.log({ options });
+
           return (
             <S.QuestionContainer width={width} height={height} key={i}>
               <GS.ScreenContainer>
@@ -79,12 +93,33 @@ export const QuestionsScreen = () => {
                     options={options}
                     questionIndex={i}
                   />
+                  {pageIndex === questions.length - 1 ? (
+                    <FadeInView style={styles.buttonWrapper}>
+                      {/* <S.ButtonWrapper> */}
+                      <Button type="secondary" style={styles.button}>
+                        Submit
+                      </Button>
+                      {/* </S.ButtonWrapper> */}
+                    </FadeInView>
+                  ) : null}
                 </S.QuestionWrapper>
               </GS.ScreenContainer>
             </S.QuestionContainer>
           );
         })}
       </ScrollContainer>
+      {pageIndex > 0 ? (
+        <S.LeftButton onPress={handlePreviousPress}>
+          <LeftArrowIcon />
+        </S.LeftButton>
+      ) : null}
+      {pageIndex < questions.length - 1 ? (
+        <S.RightButton
+          onPress={handleNextPress}
+          isLastStep={pageIndex === questions.length - 1}>
+          <RightArrowIcon />
+        </S.RightButton>
+      ) : null}
       <S.PaginationWrapper>
         {questions.map((key, index: number) => (
           <S.PaginationDot

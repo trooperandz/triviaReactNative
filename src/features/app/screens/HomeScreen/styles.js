@@ -23,4 +23,9 @@ export const styles = StyleSheet.create({
   contentContainerStyle: {
     flexGrow: 1,
   },
+  button: {
+    borderRadius: 24,
+    width: 240,
+    alignSelf: 'center',
+  },
 });

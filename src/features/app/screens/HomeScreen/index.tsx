@@ -118,7 +118,10 @@ const HomeScreen = (props) => {
         </View>
         <View>
           <S.Spacer size={32} />
-          <Button onPress={handleOnPressSubmit}>
+          <Button
+            type="primary"
+            onPress={handleOnPressSubmit}
+            style={styles.button}>
             {isLoading ? (
               <ActivityIndicator
                 style={{ marginTop: 6 }}

@@ -1,4 +1,18 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+import styled, { css } from 'styled-components/native';
+
+const navigationButtonStyle = css`
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 42px;
+  width: 42px;
+  background-color: #51a7f9;
+  border-radius: 24px;
+  border-width: 1px;
+  border-color: #51a7f9;
+  bottom: 50px;
+`;
 
 export const ScrollContainer = styled.ScrollView`
   flex: 1;
@@ -14,7 +28,6 @@ export const QuestionContainer = styled.View.attrs((props) => ({
 `;
 
 export const QuestionWrapper = styled.View`
-  /* flex-direction: row; */
   flex: 1;
 `;
 
@@ -45,3 +58,39 @@ export const Question = styled.Text`
   font-size: 20px;
   margin-bottom: 24px;
 `;
+
+export const RightButton = styled.TouchableOpacity`
+  ${navigationButtonStyle}
+  right: 24px;
+`;
+
+export const LeftButton = styled.TouchableOpacity`
+  ${navigationButtonStyle}
+  left: 24px;
+`;
+
+export const ButtonWrapper = styled.View`
+  flex: 1;
+  width: 160px;
+  align-self: center;
+  margin-top: 32px;
+`;
+
+export const styles = StyleSheet.create({
+  buttonWrapper: {
+    flex: 1,
+    width: 160,
+    alignSelf: 'center',
+    marginTop: 32,
+  },
+  button: {
+    width: '100%',
+    borderRadius: 120,
+    height: 40,
+    padding: 0,
+    marginBottom: 0,
+    backgroundColor: '#fff',
+    borderColor: '#51a7f9',
+    borderWidth: 1.5,
+  },
+});

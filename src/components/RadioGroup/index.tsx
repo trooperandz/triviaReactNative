@@ -14,7 +14,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   return (
     <View>
       {options.map(({ value, title, selected_answer }, i) => {
-        const index: number = questionIndex || i;
+        const index: number = questionIndex !== undefined ? questionIndex : i;
 
         return (
           <RadioWrapper key={value}>

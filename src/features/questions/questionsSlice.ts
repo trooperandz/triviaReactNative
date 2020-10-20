@@ -14,18 +14,17 @@ const questions = createSlice({
     receiveTriviaQuestions(state, action) {
       state.questions = action.payload.questions;
     },
-    updateTriviaQuestions(state, action) {
-      const { index, value, callback } = action.payload;
+    updateTriviaQuestion(state, action) {
+      const { index, value } = action.payload;
       // @ts-ignore
       state.questions[index].selected_answer = value;
-      callback && callback();
     },
   },
 });
 
 export const {
   receiveTriviaQuestions,
-  updateTriviaQuestions,
+  updateTriviaQuestion,
 } = questions.actions;
 
 export const getTriviaQuestions = (params: any, callback?: () => void) => {
@@ -65,6 +64,17 @@ export const getTriviaQuestions = (params: any, callback?: () => void) => {
       callback && callback();
       console.log({ error });
     }
+  };
+};
+
+export const updateSelectedAnswer = (
+  index: number,
+  value: string,
+  callback?: () => void,
+) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(updateTriviaQuestion({ index, value }));
+    callback && callback();
   };
 };
 
