@@ -106,7 +106,7 @@ export const HomeScreen = (props) => {
             type="primary"
             onPress={handleOnPressSubmit}
             style={styles.button}>
-            {true ? (
+            {isLoading ? (
               <ActivityIndicator
                 style={{ marginTop: 8 }}
                 size="small"
