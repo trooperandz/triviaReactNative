@@ -26,5 +26,5 @@ export const Heading = styled.Text`
   align-self: center;
   font-size: 20px;
   padding: 0 0 24px;
-  color: #4aa;
+  color: #51a7f9;
 `;

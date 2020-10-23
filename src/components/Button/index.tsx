@@ -6,7 +6,7 @@ import { styles } from './styles';
 type Props = {
   type: string;
   onPress: () => void;
-  style?: { [key: string]: string };
+  style?: { [key: string]: string | number };
   children: React.ReactChild;
 };
 

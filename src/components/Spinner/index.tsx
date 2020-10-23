@@ -1,7 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
-import { styles as globalStyles } from 'styles';
 import { styles } from './styles';
 
 export const Spinner = () => {

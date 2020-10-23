@@ -116,9 +116,7 @@ export const QuestionsScreen = () => {
         </S.LeftButton>
       ) : null}
       {pageIndex < questions.length - 1 ? (
-        <S.RightButton
-          onPress={handleNextPress}
-          isLastStep={pageIndex === questions.length - 1}>
+        <S.RightButton onPress={handleNextPress}>
           <RightArrowIcon />
         </S.RightButton>
       ) : null}

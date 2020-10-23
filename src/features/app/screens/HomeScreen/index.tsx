@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { View, ActivityIndicator } from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
@@ -8,47 +8,29 @@ import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
 import { getTriviaQuestions } from 'features/questions/questionsSlice';
+import { setUserName } from 'features/app/appSlice';
+import {
+  defaultRadioOptions,
+  questionCountOptions,
+  difficultyLevelOptions,
+} from '../../utils';
 import * as S from './styles';
 import * as GS from 'styles';
 
 const { styles } = S;
 
-const defaultRadioOptions = [
-  {
-    title: 'General Knowledge',
-    value: '9',
-  },
-  {
-    title: 'Science & Nature',
-    value: '17',
-  },
-  {
-    title: 'Mythology',
-    value: '20',
-  },
-  {
-    title: 'Sports',
-    value: '21',
-  },
-  {
-    title: 'Animals',
-    value: '27',
-  },
-];
-
-const questionCountOptions = ['5', '10', '15', '20'];
-const difficultyLevelOptions = ['easy', 'medium', 'hard'];
-
-const HomeScreen = (props) => {
+export const HomeScreen = (props) => {
   const { navigation } = props;
 
   const [questionCount, setQuestionCount] = useState(0);
   const [difficultyLevel, setDifficultyLevel] = useState(0);
   const [radioOptions, setRadioOptions] = useState(defaultRadioOptions);
+  const [userFirstName, setUserFirstName] = useState('');
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
-  console.log('test');
+
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
@@ -67,18 +49,20 @@ const HomeScreen = (props) => {
         setIsLoading(false);
       }),
     );
+
+    dispatch(setUserName(userFirstName));
   };
 
   const handleOnPressRadio = (value: string, index: number) => {
-    console.log({ value, index });
     const newOptions = [...radioOptions];
     newOptions.map((option) => (option.selected_answer = ''));
     newOptions[index].selected_answer = value;
     setRadioOptions(newOptions);
+    setCategory(value);
   };
 
-  const handleOnChangeText = (text) => {
-    console.log({ text });
+  const handleOnChangeText = (text: string) => {
+    setUserFirstName(text);
   };
 
   return (
@@ -122,10 +106,10 @@ const HomeScreen = (props) => {
             type="primary"
             onPress={handleOnPressSubmit}
             style={styles.button}>
-            {isLoading ? (
+            {true ? (
               <ActivityIndicator
-                style={{ marginTop: 6 }}
-                size="large"
+                style={{ marginTop: 8 }}
+                size="small"
                 color="#fff"
               />
             ) : (
@@ -137,5 +121,3 @@ const HomeScreen = (props) => {
     </S.ScrollContainer>
   );
 };
-
-export default HomeScreen;
