@@ -4,9 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { HomeScreen } from 'features/app/screens/HomeScreen';
 import { QuestionsScreen } from 'features/questions/screens/QuestionsScreen';
-import { ResultsScreen } from 'features/app/screens/ResultsScreen';
+import { ResultsScreen } from 'features/results/screens/ResultsScreen';
+import { RootStackParamList } from './types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const Navigation = () => {
   return (

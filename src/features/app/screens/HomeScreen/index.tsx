@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { View, ActivityIndicator } from 'react-native';
+import { View } from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -14,17 +14,21 @@ import {
   questionCountOptions,
   difficultyLevelOptions,
 } from '../../utils';
+import { RadioOption } from 'components/RadioGroup/types';
+import { HomeScreenProps } from './types';
 import * as S from './styles';
 import * as GS from 'styles';
 
 const { styles } = S;
 
-export const HomeScreen = (props) => {
+export const HomeScreen = (props: HomeScreenProps) => {
   const { navigation } = props;
 
   const [questionCount, setQuestionCount] = useState(0);
   const [difficultyLevel, setDifficultyLevel] = useState(0);
-  const [radioOptions, setRadioOptions] = useState(defaultRadioOptions);
+  const [radioOptions, setRadioOptions] = useState<RadioOption[]>(
+    defaultRadioOptions,
+  );
   const [userFirstName, setUserFirstName] = useState('');
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +60,7 @@ export const HomeScreen = (props) => {
   const handleOnPressRadio = (value: string, index: number) => {
     const newOptions = [...radioOptions];
     newOptions.map((option) => (option.selected_answer = ''));
-    newOptions[index].selected_answer = value;
+    newOptions[index].selected_answer = true;
     setRadioOptions(newOptions);
     setCategory(value);
   };
@@ -106,15 +110,7 @@ export const HomeScreen = (props) => {
             type="primary"
             onPress={handleOnPressSubmit}
             style={styles.button}>
-            {isLoading ? (
-              <ActivityIndicator
-                style={{ marginTop: 8 }}
-                size="small"
-                color="#fff"
-              />
-            ) : (
-              'Begin'
-            )}
+            {isLoading ? <S.Spinner size="small" color="#fff" /> : 'Begin'}
           </Button>
         </View>
       </GS.ScreenContainer>

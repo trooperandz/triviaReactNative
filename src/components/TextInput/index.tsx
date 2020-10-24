@@ -3,7 +3,11 @@ import { View } from 'react-native';
 
 import * as S from './styles';
 
-export const TextInput = (props) => {
+type Props = {
+  onChangeText: (text: string) => void;
+};
+
+export const TextInput = (props: Props) => {
   const { onChangeText, ...rest } = props;
 
   return (

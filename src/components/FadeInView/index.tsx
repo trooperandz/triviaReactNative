@@ -1,8 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, ReactChild } from 'react';
 import { Animated } from 'react-native';
 
-export const FadeInView = (props) => {
+type Props = {
+  children: ReactChild;
+  style?: { [key: string]: any };
+};
+
+export const FadeInView = (props: Props) => {
+  const { children, style } = props;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -12,8 +19,8 @@ export const FadeInView = (props) => {
   }, [fadeAnim]);
 
   return (
-    <Animated.View style={{ ...props.style, opacity: fadeAnim }}>
-      {props.children}
+    <Animated.View style={{ ...style, opacity: fadeAnim }}>
+      {children}
     </Animated.View>
   );
 };

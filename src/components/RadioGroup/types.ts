@@ -1,7 +1,7 @@
 export type RadioOption = {
-  value: string | number;
   title: string;
-  selected_answer?: string;
+  value: string;
+  selected_answer?: boolean | string | '';
 };
 
 export type RadioGroupProps = {

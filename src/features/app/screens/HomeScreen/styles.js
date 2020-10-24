@@ -16,6 +16,10 @@ export const Spacer = styled.View.attrs((props) => ({
   margin: ${(props) => props.size}px 0;
 `;
 
+export const Spinner = styled.ActivityIndicator`
+  margin-top: 8px;
+`;
+
 export const styles = StyleSheet.create({
   screenContainer: {
     justifyContent: 'space-between',

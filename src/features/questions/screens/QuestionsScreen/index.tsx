@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react';
-import styled from 'styled-components/native';
+import React, { createRef, useState } from 'react';
 import { Dimensions, ScrollView, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from 'react-native-eva-icons';
@@ -10,6 +9,7 @@ import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { updateSelectedAnswer } from 'features/questions/questionsSlice';
 import { Question } from '../../types';
+import { QuestionsScreenProps } from './types';
 import * as GS from 'styles';
 import * as S from './styles';
 
@@ -23,11 +23,13 @@ const LeftArrowIcon = () => (
   <Icon name="chevron-left-outline" width={32} height={32} fill="#fff" />
 );
 
-export const QuestionsScreen = () => {
+export const QuestionsScreen = (props: QuestionsScreenProps) => {
+  const { navigation } = props;
+
   const [pageIndex, setPageIndex] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
   const dispatch = useDispatch();
-  const scrollContainerRef = useRef<ScrollView>(null);
+  const scrollContainerRef = createRef<ScrollView>();
   const { width, height } = Dimensions.get('window');
 
   const questions = useSelector((state: any) => state.questions.questions);
@@ -65,10 +67,13 @@ export const QuestionsScreen = () => {
     );
   };
 
+  const handleOnSubmit = () => navigation.navigate('Results');
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <ScrollContainer
+      <ScrollView
+        contentContainerStyle={styles.scrollWrapper}
         horizontal={true}
         scrollEventThrottle={16}
         pagingEnabled={true}
@@ -102,10 +107,13 @@ export const QuestionsScreen = () => {
             </S.QuestionContainer>
           );
         })}
-      </ScrollContainer>
+      </ScrollView>
       {totalAnswered === questions.length ? (
         <FadeInView style={styles.buttonWrapper}>
-          <Button type="secondary" style={styles.button}>
+          <Button
+            type="secondary"
+            style={styles.button}
+            onPress={handleOnSubmit}>
             Submit
           </Button>
         </FadeInView>
@@ -121,9 +129,9 @@ export const QuestionsScreen = () => {
         </S.RightButton>
       ) : null}
       <S.PaginationWrapper>
-        {questions.map((key, index: number) => (
+        {questions.map((key: string, index: number) => (
           <S.PaginationDot
-            key={index}
+            key={key}
             currentIndex={index}
             pageIndex={pageIndex}
           />
@@ -132,7 +140,3 @@ export const QuestionsScreen = () => {
     </>
   );
 };
-
-const ScrollContainer = styled.ScrollView`
-  flex: 1;
-`;
