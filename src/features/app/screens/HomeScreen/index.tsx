@@ -60,7 +60,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
   const handleOnPressRadio = (value: string, index: number) => {
     const newOptions = [...radioOptions];
     newOptions.map((option) => (option.selected_answer = ''));
-    newOptions[index].selected_answer = true;
+    newOptions[index].selected_answer = value;
     setRadioOptions(newOptions);
     setCategory(value);
   };

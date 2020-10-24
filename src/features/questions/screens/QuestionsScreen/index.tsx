@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Dimensions, ScrollView, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from 'react-native-eva-icons';
@@ -29,7 +29,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
   const dispatch = useDispatch();
-  const scrollContainerRef = createRef<ScrollView>();
+  const scrollContainerRef = useRef<ScrollView>(null);
   const { width, height } = Dimensions.get('window');
 
   const questions = useSelector((state: any) => state.questions.questions);
@@ -45,6 +45,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
 
   const handleNextPress = () => {
     if (pageIndex < questions.length - 1 && scrollContainerRef?.current) {
+      console.log('should scroll');
       scrollContainerRef.current.scrollTo({ x: width * (pageIndex + 1) });
     }
   };
@@ -73,7 +74,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     <>
       <StatusBar barStyle="dark-content" />
       <ScrollView
-        contentContainerStyle={styles.scrollWrapper}
+        style={styles.scrollWrapper}
         horizontal={true}
         scrollEventThrottle={16}
         pagingEnabled={true}
@@ -129,9 +130,9 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
         </S.RightButton>
       ) : null}
       <S.PaginationWrapper>
-        {questions.map((key: string, index: number) => (
+        {questions.map((question: Question, index: number) => (
           <S.PaginationDot
-            key={key}
+            key={index}
             currentIndex={index}
             pageIndex={pageIndex}
           />
