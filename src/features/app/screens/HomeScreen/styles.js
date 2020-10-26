@@ -31,5 +31,6 @@ export const styles = StyleSheet.create({
     borderRadius: 24,
     width: 240,
     alignSelf: 'center',
+    marginBottom: 10,
   },
 });

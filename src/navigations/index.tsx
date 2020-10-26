@@ -16,15 +16,25 @@ export const Navigation = () => {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: { backgroundColor: '#f4f0ee' },
-          title: 'TriviaCraze',
         }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerTitle: 'TriviaCraze' }}
+        />
         <Stack.Screen
           name="Questions"
           component={QuestionsScreen}
-          options={{ headerBackTitle: 'Back' }}
+          options={{ headerTitle: 'Questions', headerBackTitle: 'Home' }}
         />
-        <Stack.Screen name="Results" component={ResultsScreen} />
+        <Stack.Screen
+          name="Results"
+          component={ResultsScreen}
+          options={{
+            headerTitle: 'Your Results',
+            headerBackTitle: undefined,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

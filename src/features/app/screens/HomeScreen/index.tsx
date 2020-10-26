@@ -34,7 +34,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-
+  console.log({ userFirstName });
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
   }, []);
@@ -47,14 +47,13 @@ export const HomeScreen = (props: HomeScreenProps) => {
       difficulty: difficultyLevelOptions[difficultyLevel],
     };
 
+    dispatch(setUserName({ userName: userFirstName }));
     dispatch(
       getTriviaQuestions(requestParams, () => {
         navigation.navigate('Questions');
         setIsLoading(false);
       }),
     );
-
-    dispatch(setUserName(userFirstName));
   };
 
   const handleOnPressRadio = (value: string, index: number) => {

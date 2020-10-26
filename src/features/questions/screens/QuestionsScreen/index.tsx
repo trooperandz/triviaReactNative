@@ -45,7 +45,6 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
 
   const handleNextPress = () => {
     if (pageIndex < questions.length - 1 && scrollContainerRef?.current) {
-      console.log('should scroll');
       scrollContainerRef.current.scrollTo({ x: width * (pageIndex + 1) });
     }
   };
