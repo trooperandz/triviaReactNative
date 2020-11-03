@@ -12,20 +12,16 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: { backgroundColor: '#f4f0ee' },
-        }}>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ headerTitle: 'TriviaCraze' }}
+          options={{ header: () => null }}
         />
         <Stack.Screen
           name="Questions"
           component={QuestionsScreen}
-          options={{ headerTitle: 'Questions', headerBackTitle: 'Home' }}
+          options={{ header: () => null }}
         />
         <Stack.Screen
           name="Results"

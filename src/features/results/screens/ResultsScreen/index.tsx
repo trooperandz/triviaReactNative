@@ -6,15 +6,17 @@ import { Header } from 'components/Header';
 import { ResultsList } from '../../components/ResultsList';
 import { Button } from 'components/Button';
 import { Question } from 'features/questions/types';
+import { ResultsScreenProps } from './types';
 import * as S from './styles';
 
 const { styles } = S;
 
-export const ResultsScreen = () => {
+export const ResultsScreen = (props: ResultsScreenProps) => {
+  const { navigation } = props;
   const userName = useSelector((state: any) => state.app.userName);
   const questions = useSelector((state: any) => state.questions.questions);
 
-  const handlePlayAgain = () => {};
+  const handlePlayAgain = () => navigation.navigate('Home');
 
   const totalCorrectCount = questions.reduce(
     (correctCount: number, question: Question) => {
@@ -33,7 +35,7 @@ export const ResultsScreen = () => {
       <ScrollView>
         <S.Container>
           <S.Title>
-            {`You got ${totalCorrectCount} / ${questions.length} correct, ${userName}`}
+            {`${userName}, you got ${totalCorrectCount} / ${questions.length} correct`}
           </S.Title>
           <ResultsList questions={questions} />
         </S.Container>

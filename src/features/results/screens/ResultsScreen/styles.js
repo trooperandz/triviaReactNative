@@ -10,6 +10,7 @@ export const Title = styled.Text`
   margin-top: 18px;
   font-size: 18px;
   text-align: center;
+  color: gray;
 `;
 
 export const styles = StyleSheet.create({

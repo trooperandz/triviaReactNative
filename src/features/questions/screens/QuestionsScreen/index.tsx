@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from 'react-native-eva-icons';
 import { AllHtmlEntities } from 'html-entities';
 
+import { Header } from 'components/Header';
 import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
@@ -55,6 +56,8 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     }
   };
 
+  const handleNavigationPress = () => navigation.navigate('Home');
+
   const onSelect = (value: string, index: number) => {
     if (totalAnswered < questions.length) {
       setTotalAnswered(totalAnswered + 1);
@@ -71,6 +74,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
 
   return (
     <>
+      <Header backOption onPress={handleNavigationPress} />
       <StatusBar barStyle="dark-content" />
       <ScrollView
         style={styles.scrollWrapper}
