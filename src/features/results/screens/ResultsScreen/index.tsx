@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ScrollView } from 'react-native';
 
+import { Header } from 'components/Header';
 import { ResultsList } from '../../components/ResultsList';
 import { Button } from 'components/Button';
 import { Question } from 'features/questions/types';
@@ -19,6 +21,7 @@ export const ResultsScreen = () => {
       if (question.selected_answer === question.correct_answer) {
         correctCount += 1;
       }
+
       return correctCount;
     },
     0,
@@ -26,10 +29,15 @@ export const ResultsScreen = () => {
 
   return (
     <>
-      <S.Title>
-        {`You got ${totalCorrectCount} / ${questions.length} correct, ${userName}`}
-      </S.Title>
-      <ResultsList questions={questions} />
+      <Header />
+      <ScrollView>
+        <S.Container>
+          <S.Title>
+            {`You got ${totalCorrectCount} / ${questions.length} correct, ${userName}`}
+          </S.Title>
+          <ResultsList questions={questions} />
+        </S.Container>
+      </ScrollView>
       <Button type="primary" style={styles.button} onPress={handlePlayAgain}>
         Play Again
       </Button>

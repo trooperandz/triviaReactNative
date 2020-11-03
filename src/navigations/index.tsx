@@ -31,8 +31,7 @@ export const Navigation = () => {
           name="Results"
           component={ResultsScreen}
           options={{
-            headerTitle: 'Your Results',
-            headerBackTitle: undefined,
+            header: () => null,
           }}
         />
       </Stack.Navigator>
