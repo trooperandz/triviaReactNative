@@ -8,6 +8,8 @@ export type Question = {
   selected_answer?: string;
 };
 
-export type State = {
-  questions: Array<Question>;
+export type QuestionsSliceState = {
+  questions: {
+    questions: Array<Question>;
+  };
 };

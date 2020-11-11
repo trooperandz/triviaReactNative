@@ -19,10 +19,14 @@ const questions = createSlice({
       // @ts-ignore
       state.questions[index].selected_answer = value;
     },
+    clearQuestionSliceState(state) {
+      state.questions = [];
+    },
   },
 });
 
 export const {
+  clearQuestionSliceState,
   receiveTriviaQuestions,
   updateTriviaQuestion,
 } = questions.actions;

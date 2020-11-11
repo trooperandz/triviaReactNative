@@ -9,7 +9,8 @@ import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { updateSelectedAnswer } from 'features/questions/questionsSlice';
-import { Question } from '../../types';
+import { setIsGameCompleted } from 'features/app/appSlice';
+import { Question, QuestionsSliceState } from '../../types';
 import { QuestionsScreenProps } from './types';
 import * as GS from 'styles';
 import * as S from './styles';
@@ -33,7 +34,9 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
   const scrollContainerRef = useRef<ScrollView>(null);
   const { width, height } = Dimensions.get('window');
 
-  const questions = useSelector((state: any) => state.questions.questions);
+  const questions = useSelector(
+    (state: QuestionsSliceState) => state.questions.questions,
+  );
 
   const setSliderPage = (e: any) => {
     const { x } = e.nativeEvent.contentOffset;
@@ -56,7 +59,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     }
   };
 
-  const handleNavigationPress = () => navigation.navigate('Home');
+  const handleNavigationBackPress = () => navigation.navigate('Home');
 
   const onSelect = (value: string, index: number) => {
     if (totalAnswered < questions.length) {
@@ -70,11 +73,13 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     );
   };
 
-  const handleOnSubmit = () => navigation.navigate('Results');
+  const handleOnSubmit = () => {
+    dispatch(setIsGameCompleted(true));
+  };
 
   return (
     <>
-      <Header backOption onPress={handleNavigationPress} />
+      <Header backOption onPress={handleNavigationBackPress} />
       <StatusBar barStyle="dark-content" />
       <ScrollView
         style={styles.scrollWrapper}
@@ -113,7 +118,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
         })}
       </ScrollView>
       {totalAnswered === questions.length ? (
-        <FadeInView style={styles.buttonWrapper}>
+        <FadeInView duration={800} style={styles.buttonWrapper}>
           <Button
             type="secondary"
             style={styles.button}

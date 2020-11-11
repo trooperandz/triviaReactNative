@@ -3,3 +3,5 @@ export type RootStackParamList = {
   Questions: undefined;
   Results: undefined;
 };
+
+export type HomeStackParamList = {};

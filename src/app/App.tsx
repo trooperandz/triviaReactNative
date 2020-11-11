@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 
-import { Navigation as RootNavigation } from '../navigations';
+import { RootNavigation } from '../navigations';
 import store from './store';
 
 const App = () => {

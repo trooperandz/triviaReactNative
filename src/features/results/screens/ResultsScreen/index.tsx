@@ -1,22 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Header } from 'components/Header';
 import { ResultsList } from '../../components/ResultsList';
 import { Button } from 'components/Button';
-import { Question } from 'features/questions/types';
-import { ResultsScreenProps } from './types';
+import { clearAppSliceState, setIsGameCompleted } from 'features/app/appSlice';
+import { clearQuestionSliceState } from 'features/questions/questionsSlice';
+import { AppSliceState } from 'features/app/types';
+import { Question, QuestionsSliceState } from 'features/questions/types';
 import * as S from './styles';
 
 const { styles } = S;
 
-export const ResultsScreen = (props: ResultsScreenProps) => {
-  const { navigation } = props;
-  const userName = useSelector((state: any) => state.app.userName);
-  const questions = useSelector((state: any) => state.questions.questions);
+export const ResultsScreen = () => {
+  const userName = useSelector((state: AppSliceState) => state.app.userName);
+  const questions = useSelector(
+    (state: QuestionsSliceState) => state.questions.questions,
+  );
+  const dispatch = useDispatch();
 
-  const handlePlayAgain = () => navigation.navigate('Home');
+  const handlePlayAgain = () => {
+    dispatch(clearAppSliceState());
+    dispatch(clearQuestionSliceState());
+    dispatch(setIsGameCompleted(false));
+  };
 
   const totalCorrectCount = questions.reduce(
     (correctCount: number, question: Question) => {
@@ -32,14 +39,12 @@ export const ResultsScreen = (props: ResultsScreenProps) => {
   return (
     <>
       <Header />
-      <ScrollView>
-        <S.Container>
-          <S.Title>
-            {`${userName}, you got ${totalCorrectCount} / ${questions.length} correct`}
-          </S.Title>
-          <ResultsList questions={questions} />
-        </S.Container>
-      </ScrollView>
+      <S.Container>
+        <S.Title>
+          {`${userName}, you got ${totalCorrectCount} / ${questions.length} correct`}
+        </S.Title>
+        <ResultsList questions={questions} />
+      </S.Container>
       <Button type="primary" style={styles.button} onPress={handlePlayAgain}>
         Play Again
       </Button>

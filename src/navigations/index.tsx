@@ -1,36 +1,18 @@
-import * as React from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeScreen } from 'features/app/screens/HomeScreen';
-import { QuestionsScreen } from 'features/questions/screens/QuestionsScreen';
-import { ResultsScreen } from 'features/results/screens/ResultsScreen';
-import { RootStackParamList } from './types';
+import { HomeStack } from './HomeStack';
+import { ResultsStack } from './ResultsStack';
 
-const Stack = createStackNavigator<RootStackParamList>();
+export const RootNavigation = () => {
+  const isGameCompleted = useSelector(
+    (state: any) => state.app.isGameCompleted,
+  );
 
-export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ header: () => null }}
-        />
-        <Stack.Screen
-          name="Questions"
-          component={QuestionsScreen}
-          options={{ header: () => null }}
-        />
-        <Stack.Screen
-          name="Results"
-          component={ResultsScreen}
-          options={{
-            header: () => null,
-          }}
-        />
-      </Stack.Navigator>
+      {isGameCompleted ? <ResultsStack /> : <HomeStack />}
     </NavigationContainer>
   );
 };
