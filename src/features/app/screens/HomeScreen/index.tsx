@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { View } from 'react-native';
+import { TextInput as Input, View } from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -36,9 +36,14 @@ export const HomeScreen = (props: HomeScreenProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  console.log({ userFirstName });
+  const inputRef = useRef<Input>();
+
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
+  }, []);
+
+  useEffect(() => {
+    inputRef.current?.focus();
   }, []);
 
   const handleOnPressSubmit = () => {
@@ -81,7 +86,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
                 <GS.Heading>Select Your Trivia</GS.Heading>
 
                 <S.FormLabel>First Name</S.FormLabel>
-                <TextInput onChangeText={handleOnChangeText} />
+                <TextInput ref={inputRef} onChangeText={handleOnChangeText} />
                 <S.Spacer size={16} />
 
                 <S.FormLabel>Total Questions</S.FormLabel>
