@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Header } from 'components/Header';
+import { FadeInView } from 'components/FadeInView';
 import { ResultsList } from '../../components/ResultsList';
 import { Button } from 'components/Button';
 import { clearAppSliceState, setIsGameCompleted } from 'features/app/appSlice';
@@ -43,7 +44,9 @@ export const ResultsScreen = () => {
         <S.Title>
           {`${userName}, you got ${totalCorrectCount} / ${questions.length} correct`}
         </S.Title>
-        <ResultsList questions={questions} />
+        <FadeInView>
+          <ResultsList questions={questions} />
+        </FadeInView>
       </S.Container>
       <Button type="primary" style={styles.button} onPress={handlePlayAgain}>
         Play Again

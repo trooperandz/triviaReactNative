@@ -5,6 +5,7 @@ import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
 
 import { Header } from 'components/Header';
+import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
@@ -74,47 +75,58 @@ export const HomeScreen = (props: HomeScreenProps) => {
       <Header />
       <S.ScrollContainer contentContainerStyle={styles.contentContainerStyle}>
         <GS.ScreenContainer style={styles.screenContainer}>
-          <View>
-            <GS.Heading>Select Your Trivia</GS.Heading>
+          <FadeInView duration={400}>
+            <>
+              <View>
+                <GS.Heading>Select Your Trivia</GS.Heading>
 
-            <S.FormLabel>First Name</S.FormLabel>
-            <TextInput onChangeText={handleOnChangeText} />
-            <S.Spacer size={16} />
+                <S.FormLabel>First Name</S.FormLabel>
+                <TextInput onChangeText={handleOnChangeText} />
+                <S.Spacer size={16} />
 
-            <S.FormLabel>Total Questions</S.FormLabel>
-            <SegmentedControl
-              values={questionCountOptions}
-              selectedIndex={questionCount}
-              activeTextColor="#51a7f9"
-              onChange={(event) =>
-                setQuestionCount(event.nativeEvent.selectedSegmentIndex)
-              }
-            />
-            <S.Spacer size={20} />
+                <S.FormLabel>Total Questions</S.FormLabel>
+                <SegmentedControl
+                  values={questionCountOptions}
+                  selectedIndex={questionCount}
+                  activeTextColor="#51a7f9"
+                  onChange={(event) =>
+                    setQuestionCount(event.nativeEvent.selectedSegmentIndex)
+                  }
+                />
+                <S.Spacer size={20} />
 
-            <S.FormLabel>Select Category</S.FormLabel>
-            <RadioGroup onSelect={handleOnPressRadio} options={radioOptions} />
-            <S.Spacer size={20} />
+                <S.FormLabel>Select Category</S.FormLabel>
+                <RadioGroup
+                  onSelect={handleOnPressRadio}
+                  options={radioOptions}
+                />
+                <S.Spacer size={20} />
 
-            <S.FormLabel>Difficulty Level</S.FormLabel>
-            <SegmentedControl
-              values={difficultyLevelOptions}
-              selectedIndex={difficultyLevel}
-              activeTextColor="#51a7f9"
-              onChange={(event) =>
-                setDifficultyLevel(event.nativeEvent.selectedSegmentIndex)
-              }
-            />
-          </View>
-          <View>
-            <S.Spacer size={32} />
-            <Button
-              type="primary"
-              onPress={handleOnPressSubmit}
-              style={styles.button}>
-              {isLoading ? <S.Spinner size="small" color="#fff" /> : 'Begin'}
-            </Button>
-          </View>
+                <S.FormLabel>Difficulty Level</S.FormLabel>
+                <SegmentedControl
+                  values={difficultyLevelOptions}
+                  selectedIndex={difficultyLevel}
+                  activeTextColor="#51a7f9"
+                  onChange={(event) =>
+                    setDifficultyLevel(event.nativeEvent.selectedSegmentIndex)
+                  }
+                />
+              </View>
+              <View>
+                <S.Spacer size={32} />
+                <Button
+                  type="primary"
+                  onPress={handleOnPressSubmit}
+                  style={styles.button}>
+                  {isLoading ? (
+                    <S.Spinner size="small" color="#fff" />
+                  ) : (
+                    'Begin'
+                  )}
+                </Button>
+              </View>
+            </>
+          </FadeInView>
         </GS.ScreenContainer>
       </S.ScrollContainer>
     </>
