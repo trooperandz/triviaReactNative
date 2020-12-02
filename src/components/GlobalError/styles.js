@@ -10,7 +10,8 @@ export const Container = styled.View`
 export const Alert = styled.View`
   align-items: center;
   min-height: 150px;
-  padding: 32px;
+  width: 60%;
+  padding: 18px;
   border-radius: 20px;
   background-color: #fff;
 `;
@@ -30,5 +31,8 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  button: {
+    marginBottom: 0,
   },
 });

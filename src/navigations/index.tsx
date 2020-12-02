@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { HomeStack } from './HomeStack';
 import { ResultsStack } from './ResultsStack';
+import { navigationRef } from 'utils/navigation';
 
 export const RootNavigation = () => {
   const isGameCompleted = useSelector(
@@ -11,7 +12,7 @@ export const RootNavigation = () => {
   );
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       {isGameCompleted ? <ResultsStack /> : <HomeStack />}
     </NavigationContainer>
   );

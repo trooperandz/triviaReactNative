@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
+import { setGlobalError } from 'features/app/appSlice';
 import { triviaAPI } from 'utils';
+import * as RootNavigation from 'utils/navigation';
 
 const initialState = {
   questions: [],
@@ -59,14 +61,14 @@ export const getTriviaQuestions = (params: any, callback?: () => void) => {
         }
 
         throw new Error(errorMessage);
-        // dispatch(setApiError(errorMessage));
       } else {
         dispatch(receiveTriviaQuestions({ questions: results }));
         callback && callback();
+        RootNavigation.navigate('Questions', null);
       }
     } catch (error) {
+      dispatch(setGlobalError(error.message));
       callback && callback();
-      console.log({ error });
     }
   };
 };

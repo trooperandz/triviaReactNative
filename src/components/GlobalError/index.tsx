@@ -25,7 +25,7 @@ export default () => {
       <S.Container>
         <S.Alert style={styles.alert}>
           <S.AlertText>{error}</S.AlertText>
-          <Button type="primary" onPress={handleClose}>
+          <Button type="primary" onPress={handleClose} style={styles.button}>
             Okay
           </Button>
         </S.Alert>

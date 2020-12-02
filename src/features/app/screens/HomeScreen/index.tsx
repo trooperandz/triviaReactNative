@@ -76,7 +76,6 @@ export const HomeScreen = (props: HomeScreenProps) => {
     dispatch(setUserName({ userName: userFirstName }));
     dispatch(
       getTriviaQuestions(requestParams, () => {
-        navigation.navigate('Questions');
         setIsLoading(false);
       }),
     );
