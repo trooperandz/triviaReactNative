@@ -5,8 +5,13 @@ export const ScrollContainer = styled.ScrollView`
   flex: 1;
 `;
 
+export const LabelWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const FormLabel = styled.Text`
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-size: 16px;
 `;
 
@@ -18,6 +23,13 @@ export const Spacer = styled.View.attrs((props) => ({
 
 export const Spinner = styled.ActivityIndicator`
   margin-top: 8px;
+`;
+
+export const Error = styled.Text`
+  margin-left: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #cc4b37;
 `;
 
 export const styles = StyleSheet.create({

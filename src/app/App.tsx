@@ -5,11 +5,13 @@ import { Provider } from 'react-redux';
 
 import { RootNavigation } from '../navigations';
 import store from './store';
+import GlobalError from '../components/GlobalError';
 
 const App = () => {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.safeView}>
+        <GlobalError />
         <RootNavigation />
       </SafeAreaView>
     </Provider>

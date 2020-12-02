@@ -1,17 +1,19 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { MaterialIndicator } from 'react-native-indicators';
 
 import { styles } from './styles';
 
 type Props = {
-  type: string;
+  children: React.ReactChild;
+  isLoading?: boolean;
   onPress: () => void;
   style?: { [key: string]: string | number };
-  children: React.ReactChild;
+  type: string;
 };
 
 export const Button = (props: Props) => {
-  const { onPress, style, type, children } = props;
+  const { isLoading, onPress, style, type, children } = props;
 
   const textStyle =
     type === 'primary' ? styles.primaryText : styles.secondaryText;
@@ -22,11 +24,17 @@ export const Button = (props: Props) => {
   const borderStyle =
     type === 'primary' ? styles.primaryBorder : styles.secondaryBorder;
 
+  const spinnerColor = type === 'primary' ? '#fff' : '#51a7f9';
+
   return (
     <TouchableOpacity
       style={[styles.button, backgroundStyle, borderStyle, { ...style }]}
       onPress={onPress}>
-      <Text style={[styles.text, textStyle]}>{children}</Text>
+      {isLoading ? (
+        <MaterialIndicator color={spinnerColor} size={30} />
+      ) : (
+        <Text style={[styles.text, textStyle]}>{children}</Text>
+      )}
     </TouchableOpacity>
   );
 };

@@ -11,7 +11,7 @@ const app = createSlice({
   initialState,
   reducers: {
     setGlobalError(state, action) {
-      state.error = action.payload.error;
+      state.error = action.payload;
     },
     setUserName(state, action) {
       state.userName = action.payload.userName;

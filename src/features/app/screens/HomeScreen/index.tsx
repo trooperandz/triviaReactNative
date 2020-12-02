@@ -10,14 +10,14 @@ import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
 import { getTriviaQuestions } from 'features/questions/questionsSlice';
-import { setUserName } from 'features/app/appSlice';
+import { setGlobalError, setUserName } from 'features/app/appSlice';
 import {
   defaultRadioOptions,
   questionCountOptions,
   difficultyLevelOptions,
 } from '../../utils';
 import { RadioOption } from 'components/RadioGroup/types';
-import { HomeScreenProps } from './types';
+import { HomeScreenProps, FormErrors } from './types';
 import * as S from './styles';
 import * as GS from 'styles';
 
@@ -28,15 +28,16 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   const [questionCount, setQuestionCount] = useState(0);
   const [difficultyLevel, setDifficultyLevel] = useState(0);
-  const [radioOptions, setRadioOptions] = useState<RadioOption[]>(
-    defaultRadioOptions,
-  );
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [userFirstName, setUserFirstName] = useState('');
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [radioOptions, setRadioOptions] = useState<RadioOption[]>(
+    defaultRadioOptions,
+  );
 
   const dispatch = useDispatch();
-  const inputRef = useRef<Input>();
+  const inputRef = useRef<Input>(null);
 
   useEffect(() => {
     setTimeout(() => SplashScreen.hide(), 3500);
@@ -48,6 +49,24 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   const handleOnPressSubmit = () => {
     setIsLoading(true);
+    let newErrors: FormErrors = {};
+    setFormErrors({ ...newErrors });
+
+    if (!userFirstName || !/^[a-zA-Z]+$/.test(userFirstName)) {
+      newErrors.userFirstName = 'Enter a valid first name';
+    }
+
+    if (!category) {
+      newErrors.category = 'Select a category';
+    }
+
+    if (Object.keys(newErrors).length) {
+      setIsLoading(false);
+      setFormErrors({ ...newErrors });
+      dispatch(setGlobalError('Please enter all form fields!'));
+      return;
+    }
+
     const requestParams = {
       amount: questionCountOptions[questionCount],
       category,
@@ -85,8 +104,17 @@ export const HomeScreen = (props: HomeScreenProps) => {
               <View>
                 <GS.Heading>Select Your Trivia</GS.Heading>
 
-                <S.FormLabel>First Name</S.FormLabel>
-                <TextInput ref={inputRef} onChangeText={handleOnChangeText} />
+                <S.LabelWrapper>
+                  <S.FormLabel>First Name</S.FormLabel>
+                  {formErrors.userFirstName ? (
+                    <S.Error>{formErrors.userFirstName}</S.Error>
+                  ) : null}
+                </S.LabelWrapper>
+                <TextInput
+                  ref={inputRef}
+                  onChangeText={handleOnChangeText}
+                  hasError={formErrors.userFirstName}
+                />
                 <S.Spacer size={16} />
 
                 <S.FormLabel>Total Questions</S.FormLabel>
@@ -99,8 +127,12 @@ export const HomeScreen = (props: HomeScreenProps) => {
                   }
                 />
                 <S.Spacer size={20} />
-
-                <S.FormLabel>Select Category</S.FormLabel>
+                <S.LabelWrapper>
+                  <S.FormLabel>Select Category</S.FormLabel>
+                  {formErrors.category ? (
+                    <S.Error>{formErrors.category}</S.Error>
+                  ) : null}
+                </S.LabelWrapper>
                 <RadioGroup
                   onSelect={handleOnPressRadio}
                   options={radioOptions}
@@ -122,12 +154,9 @@ export const HomeScreen = (props: HomeScreenProps) => {
                 <Button
                   type="primary"
                   onPress={handleOnPressSubmit}
-                  style={styles.button}>
-                  {isLoading ? (
-                    <S.Spinner size="small" color="#fff" />
-                  ) : (
-                    'Begin'
-                  )}
+                  style={styles.button}
+                  isLoading={isLoading}>
+                  Begin
                 </Button>
               </View>
             </>
