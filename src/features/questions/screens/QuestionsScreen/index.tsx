@@ -141,8 +141,8 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
         {questions.map((question: Question, index: number) => (
           <S.PaginationDot
             key={index}
-            currentIndex={index}
-            pageIndex={pageIndex}
+            isCurrentQuestion={index === pageIndex}
+            isAnswered={question.selected_answer ? true : false}
           />
         ))}
       </S.PaginationWrapper>

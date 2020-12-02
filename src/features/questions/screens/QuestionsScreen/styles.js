@@ -42,15 +42,16 @@ export const PaginationWrapper = styled.View`
 `;
 
 export const PaginationDot = styled.View.attrs((props) => ({
-  currentIndex: props.currentIndex,
-  pageIndex: props.pageIndex,
+  isCurrentQuestion: props.isCurrentQuestion,
+  isAnswered: props.isAnswered,
 }))`
   height: 10px;
   width: 10px;
   border-radius: 5px;
-  background-color: #0898a0;
+  background-color: ${(props) => (props.isAnswered ? '#0898a0' : '#fff')};
+  border: ${(props) => (props.isAnswered ? 'none' : '2px solid #0898a0')};
   margin-left: 10px;
-  opacity: ${(props) => (props.pageIndex === props.currentIndex ? 1 : 0.2)};
+  opacity: ${(props) => (props.isCurrentQuestion ? 1 : 0.2)};
 `;
 
 export const Question = styled.Text`

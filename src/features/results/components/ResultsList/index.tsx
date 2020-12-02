@@ -38,14 +38,20 @@ export const ResultsList = (props: ResultsListProps) => {
           <S.Question>
             {questionNumber}. {entities.decode(item.question)}
           </S.Question>
-          <S.Answer>
-            Your answer: {entities.decode(item.selected_answer as string)}
-          </S.Answer>
-          <S.Answer>
-            {!isAnswerCorrect
-              ? `Correct Answer: ${entities.decode(item.correct_answer)}`
-              : null}
-          </S.Answer>
+          <S.AnswerWrapper>
+            <S.AnswerTitle>Your answer:</S.AnswerTitle>
+            <S.Answer>
+              {entities.decode(item.selected_answer as string)}
+            </S.Answer>
+          </S.AnswerWrapper>
+          <S.AnswerWrapper>
+            {!isAnswerCorrect ? (
+              <>
+                <S.AnswerTitle>Correct Answer:</S.AnswerTitle>
+                <S.Answer>{entities.decode(item.correct_answer)}</S.Answer>
+              </>
+            ) : null}
+          </S.AnswerWrapper>
         </S.CardBody>
       </S.Card>
     );

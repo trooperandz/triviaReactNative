@@ -1,5 +1,10 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { StyleSheet } from 'react-native';
+
+const answer = css`
+  margin-bottom: 6px;
+  color: gray;
+`;
 
 export const Card = styled.View`
   border: 1px solid #ccc;
@@ -24,9 +29,18 @@ export const Status = styled.Text`
   color: gray;
 `;
 
+export const AnswerWrapper = styled.View`
+  flex-direction: row;
+`;
+
+export const AnswerTitle = styled.Text`
+  ${answer}
+`;
+
 export const Answer = styled.Text`
-  margin-bottom: 6px;
-  color: gray;
+  ${answer}
+  margin-left: 8px;
+  font-style: italic;
 `;
 
 export const Question = styled.Text`
@@ -38,6 +52,6 @@ export const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 24,
     paddingTop: 18,
-    paddingBottom: 56,
+    paddingBottom: 85,
   },
 });

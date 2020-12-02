@@ -2,14 +2,15 @@ import React from 'react';
 import { Modal } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '../../components/Button';
-import { setGlobalError } from '../../features/app/appSlice';
+import { Button } from 'components/Button';
+import { setGlobalError } from 'features/app/appSlice';
+import { AppSliceState } from 'features/app/types';
 import * as S from './styles';
 
 const { styles } = S;
 
 export default () => {
-  const error = useSelector((state: any) => state.app.error);
+  const error = useSelector((state: AppSliceState) => state.app.error);
   const dispatch = useDispatch();
 
   const handleClose = () => dispatch(setGlobalError(''));
