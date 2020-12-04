@@ -13,6 +13,7 @@ export const LabelWrapper = styled.View`
 export const FormLabel = styled.Text`
   margin-bottom: 8px;
   font-size: 16px;
+  color: #0a0a0a;
 `;
 
 export const Spacer = styled.View.attrs((props) => ({

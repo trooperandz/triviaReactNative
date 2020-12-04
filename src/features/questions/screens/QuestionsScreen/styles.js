@@ -58,6 +58,7 @@ export const Question = styled.Text`
   flex-wrap: wrap;
   font-size: 20px;
   margin-bottom: 24px;
+  color: #0a0a0a;
 `;
 
 export const RightButton = styled.TouchableOpacity`

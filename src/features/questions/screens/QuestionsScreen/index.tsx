@@ -102,7 +102,11 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
           });
 
           return (
-            <S.QuestionContainer width={width} height={height} key={i}>
+            <S.QuestionContainer
+              testID="question-screen"
+              width={width}
+              height={height}
+              key={i}>
               <GS.ScreenContainer>
                 <S.QuestionWrapper>
                   <S.Question>{entities.decode(question.question)}</S.Question>

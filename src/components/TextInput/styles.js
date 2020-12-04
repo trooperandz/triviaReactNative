@@ -9,4 +9,5 @@ export const NameInput = styled.TextInput.attrs((props) => ({
   border-bottom-color: ${(props) => (props.hasError ? '#cc4b37' : '#bfbfbf')};
   border-bottom-width: ${(props) => (props.hasError ? '1px' : '1px')};
   font-size: 18px;
+  color: #0a0a0a;
 `;
