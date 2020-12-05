@@ -147,6 +147,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
             key={index}
             isCurrentQuestion={index === pageIndex}
             isAnswered={question.selected_answer ? true : false}
+            testID="pagination-dot"
           />
         ))}
       </S.PaginationWrapper>

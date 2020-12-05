@@ -9,7 +9,9 @@ export const RadioButton: React.FC<RadioButtonProps> = (props) => {
 
   return (
     <View style={[styles.radioOuter, style]}>
-      {isSelected ? <View style={styles.radioInner} /> : null}
+      {isSelected ? (
+        <View testID="radio-inner" style={styles.radioInner} />
+      ) : null}
     </View>
   );
 };

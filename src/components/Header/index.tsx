@@ -15,7 +15,7 @@ export const Header = (props: HeaderProps) => {
   return (
     <S.Container style={styles.header}>
       {backOption ? (
-        <S.BackIcon onPress={onPress}>
+        <S.BackIcon testID="back-icon" onPress={onPress}>
           <LeftChevronIcon />
         </S.BackIcon>
       ) : null}

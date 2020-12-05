@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIndicator } from 'react-native-indicators';
 
 import { styles } from './styles';
@@ -28,10 +28,13 @@ export const Button = (props: Props) => {
 
   return (
     <TouchableOpacity
+      testID="button"
       style={[styles.button, backgroundStyle, borderStyle, { ...style }]}
       onPress={onPress}>
       {isLoading ? (
-        <MaterialIndicator color={spinnerColor} size={30} />
+        <View testID="button-spinner">
+          <MaterialIndicator color={spinnerColor} size={30} />
+        </View>
       ) : (
         <Text style={[styles.text, textStyle]}>{children}</Text>
       )}

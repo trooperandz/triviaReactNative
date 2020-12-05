@@ -16,6 +16,7 @@ export const TextInput = forwardRef((props: Props, ref: Ref<Input>) => {
       <S.NameInput
         hasError={hasError}
         onChangeText={(text: string) => onChangeText(text)}
+        testID="text-input"
         ref={ref}
         {...rest}
       />

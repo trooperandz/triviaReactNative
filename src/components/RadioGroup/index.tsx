@@ -17,7 +17,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
         const index: number = questionIndex !== undefined ? questionIndex : i;
 
         return (
-          <RadioWrapper key={value}>
+          <RadioWrapper key={value} testID="radio-wrapper">
             <RadioWithLabel onPress={() => onSelect(value, index)}>
               <RadioButton isSelected={selected_answer === value} />
               <RadioLabel>{entities.decode(title)}</RadioLabel>
