@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { AllHtmlEntities } from 'html-entities';
 import { Icon } from 'react-native-eva-icons';
 
@@ -10,15 +10,19 @@ import * as S from './styles';
 const { styles } = S;
 const entities = new AllHtmlEntities();
 const CheckMarkIcon = () => (
-  <Icon
-    name="checkmark-circle-2-outline"
-    width={32}
-    height={32}
-    fill="#329999"
-  />
+  <View testID="checkmark-icon">
+    <Icon
+      name="checkmark-circle-2-outline"
+      width={32}
+      height={32}
+      fill="#329999"
+    />
+  </View>
 );
 const MinusIcon = () => (
-  <Icon name="minus-circle-outline" width={32} height={32} fill="#993232" />
+  <View testID="minus-icon">
+    <Icon name="minus-circle-outline" width={32} height={32} fill="#993232" />
+  </View>
 );
 
 export const ResultsList = (props: ResultsListProps) => {
@@ -29,7 +33,7 @@ export const ResultsList = (props: ResultsListProps) => {
     const isAnswerCorrect = item.correct_answer === item.selected_answer;
 
     return (
-      <S.Card>
+      <S.Card testID="results-card">
         <S.CardHeader>
           {isAnswerCorrect ? <CheckMarkIcon /> : <MinusIcon />}
           <S.Status>{isAnswerCorrect ? 'Correct' : 'Incorrect'}</S.Status>
@@ -48,7 +52,9 @@ export const ResultsList = (props: ResultsListProps) => {
             {!isAnswerCorrect ? (
               <>
                 <S.AnswerTitle>Correct Answer:</S.AnswerTitle>
-                <S.Answer>{entities.decode(item.correct_answer)}</S.Answer>
+                <S.Answer testID="correct-answer">
+                  {entities.decode(item.correct_answer)}
+                </S.Answer>
               </>
             ) : null}
           </S.AnswerWrapper>
