@@ -9,7 +9,6 @@ import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { updateSelectedAnswer } from 'features/questions/questionsSlice';
-import { setIsGameCompleted } from 'features/app/appSlice';
 import { Question, QuestionsSliceState } from '../../types';
 import { QuestionsScreenProps } from './types';
 import * as GS from 'styles';
@@ -73,10 +72,6 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     );
   };
 
-  const handleOnSubmit = () => {
-    dispatch(setIsGameCompleted(true));
-  };
-
   return (
     <>
       <Header backOption onPress={handleNavigationBackPress} />
@@ -126,7 +121,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
           <Button
             type="secondary"
             style={styles.button}
-            onPress={handleOnSubmit}>
+            onPress={() => navigation.navigate('Results')}>
             Submit
           </Button>
         </FadeInView>

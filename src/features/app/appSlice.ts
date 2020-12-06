@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Dispatch } from 'redux';
+
+import { clearQuestionSliceState } from 'features/questions/questionsSlice';
 
 const initialState = {
   error: '',
   userName: '',
-  isGameCompleted: false,
 };
 
 const app = createSlice({
@@ -16,22 +18,21 @@ const app = createSlice({
     setUserName(state, action) {
       state.userName = action.payload.userName;
     },
-    setIsGameCompleted(state, action) {
-      state.isGameCompleted = action.payload;
-    },
     clearAppSliceState(state) {
       state.error = '';
       state.userName = '';
-      state.isGameCompleted = false;
     },
   },
 });
 
-export const {
-  clearAppSliceState,
-  setIsGameCompleted,
-  setGlobalError,
-  setUserName,
-} = app.actions;
+export const { clearAppSliceState, setGlobalError, setUserName } = app.actions;
+
+export const resetGame = (callback: () => void) => {
+  return (dispatch: Dispatch) => {
+    dispatch(clearAppSliceState());
+    dispatch(clearQuestionSliceState());
+    callback && callback();
+  };
+};
 
 export default app.reducer;

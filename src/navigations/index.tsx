@@ -1,19 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { HomeStack } from './HomeStack';
-import { ResultsStack } from './ResultsStack';
 import { navigationRef } from 'utils/navigation';
+import { RootStack } from './RootStack';
 
-export const RootNavigation = () => {
-  const isGameCompleted = useSelector(
-    (state: any) => state.app.isGameCompleted,
-  );
-
-  return (
-    <NavigationContainer ref={navigationRef}>
-      {isGameCompleted ? <ResultsStack /> : <HomeStack />}
-    </NavigationContainer>
-  );
-};
+export const RootNavigation = () => (
+  <NavigationContainer ref={navigationRef}>
+    <RootStack />
+  </NavigationContainer>
+);

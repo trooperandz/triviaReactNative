@@ -1,8 +1,11 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
+import { useDispatch } from 'react-redux';
 import { renderWithProvider } from 'utils/testUtils';
 
 import { QuestionsScreen } from '../index';
+
+// jest.mock('react-redux');
 
 const state = {
   questions: {
@@ -12,18 +15,18 @@ const state = {
         type: 'boolean',
         difficulty: 'easy',
         question: 'question 1',
-        correct_answer: 'd',
-        incorrect_answers: ['a', 'b', 'c'],
-        selected_answer: 'a',
+        correct_answer: 'D',
+        incorrect_answers: ['A', 'B', 'C'],
+        selected_answer: 'A',
       },
       {
         category: 'Geography',
         type: 'boolean',
         difficulty: 'medium',
         question: 'question 2',
-        correct_answer: 'h',
-        incorrect_answers: ['e', 'f', 'g'],
-        selected_answer: 'h',
+        correct_answer: 'H',
+        incorrect_answers: ['E', 'F', 'G'],
+        selected_answer: 'H',
       },
     ],
   },
@@ -40,20 +43,20 @@ describe('QuestionsScreen', () => {
     expect(queryAllByTestId('question-screen')).toHaveLength(2);
   });
 
-  it('should render the correct number of pagination dots', () => {
-    const { queryAllByTestId } = renderComponent();
+  it('should reveal the submit button and execute navigate properly', () => {
+    const mockNavigation = { navigate: jest.fn() };
+    const { getByText, getByTestId, queryByTestId } = renderComponent({
+      navigation: mockNavigation,
+    });
 
-    expect(queryAllByTestId('pagination-dot')).toHaveLength(2);
-  });
-
-  it('should should show the results submit button if all questions are answered', () => {
-    const { getByText, getByTestId, queryByTestId } = renderComponent();
-
-    expect(queryByTestId('button')).toBeNull();
-
+    // All questions must be answered before submit button is revealed
     fireEvent.press(getByText('D'));
     fireEvent.press(getByText('H'));
 
     expect(getByTestId('button')).toBeDefined();
+
+    fireEvent.press(getByTestId('button'));
+
+    expect(mockNavigation.navigate).toHaveBeenCalled();
   });
 });

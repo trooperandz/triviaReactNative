@@ -5,15 +5,17 @@ import { Header } from 'components/Header';
 import { FadeInView } from 'components/FadeInView';
 import { ResultsList } from '../../components/ResultsList';
 import { Button } from 'components/Button';
-import { clearAppSliceState, setIsGameCompleted } from 'features/app/appSlice';
-import { clearQuestionSliceState } from 'features/questions/questionsSlice';
+import { resetGame } from 'features/app/appSlice';
 import { AppSliceState } from 'features/app/types';
+import { ResultsScreenProps } from './types';
 import { Question, QuestionsSliceState } from 'features/questions/types';
 import * as S from './styles';
 
 const { styles } = S;
 
-export const ResultsScreen = () => {
+export const ResultsScreen = (props: ResultsScreenProps) => {
+  const { navigation } = props;
+
   const userName = useSelector((state: AppSliceState) => state.app.userName);
   const questions = useSelector(
     (state: QuestionsSliceState) => state.questions.questions,
@@ -21,9 +23,7 @@ export const ResultsScreen = () => {
   const dispatch = useDispatch();
 
   const handlePlayAgain = () => {
-    dispatch(clearAppSliceState());
-    dispatch(clearQuestionSliceState());
-    dispatch(setIsGameCompleted(false));
+    dispatch(resetGame(() => navigation.navigate('Home')));
   };
 
   const totalCorrectCount = questions.reduce(

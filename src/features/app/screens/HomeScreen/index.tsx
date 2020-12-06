@@ -17,15 +17,13 @@ import {
   difficultyLevelOptions,
 } from '../../utils';
 import { RadioOption } from 'components/RadioGroup/types';
-import { HomeScreenProps, FormErrors } from './types';
+import { FormErrors } from './types';
 import * as S from './styles';
 import * as GS from 'styles';
 
 const { styles } = S;
 
-export const HomeScreen = (props: HomeScreenProps) => {
-  const { navigation } = props;
-
+export const HomeScreen = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [difficultyLevel, setDifficultyLevel] = useState(0);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
