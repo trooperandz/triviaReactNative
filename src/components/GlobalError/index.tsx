@@ -17,13 +17,11 @@ export default () => {
 
   if (!error) {
     return null;
-  } else {
-    console.log('should show error');
   }
 
   return (
     <Modal animationType="slide" transparent={true}>
-      <S.Container>
+      <S.Container testID="error-modal">
         <S.Alert style={styles.alert}>
           <S.AlertText>{error}</S.AlertText>
           <Button type="primary" onPress={handleClose} style={styles.button}>

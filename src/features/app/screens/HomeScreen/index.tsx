@@ -104,7 +104,9 @@ export const HomeScreen = () => {
                 <S.LabelWrapper>
                   <S.FormLabel>First Name</S.FormLabel>
                   {formErrors.userFirstName ? (
-                    <S.Error>{formErrors.userFirstName}</S.Error>
+                    <S.Error testID="error-name">
+                      {formErrors.userFirstName}
+                    </S.Error>
                   ) : null}
                 </S.LabelWrapper>
                 <TextInput
@@ -127,7 +129,9 @@ export const HomeScreen = () => {
                 <S.LabelWrapper>
                   <S.FormLabel>Select Category</S.FormLabel>
                   {formErrors.category ? (
-                    <S.Error>{formErrors.category}</S.Error>
+                    <S.Error testID="error-category">
+                      {formErrors.category}
+                    </S.Error>
                   ) : null}
                 </S.LabelWrapper>
                 <RadioGroup

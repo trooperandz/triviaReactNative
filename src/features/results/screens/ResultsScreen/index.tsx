@@ -23,7 +23,8 @@ export const ResultsScreen = (props: ResultsScreenProps) => {
   const dispatch = useDispatch();
 
   const handlePlayAgain = () => {
-    dispatch(resetGame(() => navigation.navigate('Home')));
+    dispatch(resetGame());
+    navigation.navigate('Home');
   };
 
   const totalCorrectCount = questions.reduce(

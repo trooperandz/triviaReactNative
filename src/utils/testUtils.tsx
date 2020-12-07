@@ -8,15 +8,39 @@ const mockStore = configureStore([thunk]);
 
 const initialState = {
   app: {},
-  questions: {},
+  questions: {
+    questions: [
+      {
+        category: 'General',
+        type: 'boolean',
+        difficulty: 'easy',
+        question: 'question 1',
+        correct_answer: 'D',
+        incorrect_answers: ['A', 'B', 'C'],
+        selected_answer: 'A',
+      },
+      {
+        category: 'Geography',
+        type: 'boolean',
+        difficulty: 'medium',
+        question: 'question 2',
+        correct_answer: 'H',
+        incorrect_answers: ['E', 'F', 'G'],
+        selected_answer: 'H',
+      },
+    ],
+  },
 };
 
 export const renderWithProvider = (
   children: JSX.Element,
   state: { [key: string]: any },
+  store?: any,
 ) => {
-  const test = { ...initialState, ...state };
-  const store = mockStore(test);
+  const testStore = { ...initialState, ...state };
+  // const store = store || mockStore(testStore);
 
-  return render(<Provider store={store}>{children}</Provider>);
+  return render(
+    <Provider store={store || mockStore(testStore)}>{children}</Provider>,
+  );
 };

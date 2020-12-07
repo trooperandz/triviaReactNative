@@ -34,7 +34,7 @@ describe('ResultsList', () => {
   });
 
   it('should render a checkmark icon for correct answers', () => {
-    const { getByTestId, debug } = renderComponent({
+    const { getByTestId } = renderComponent({
       questions: [questions[0]],
     });
 
@@ -42,7 +42,7 @@ describe('ResultsList', () => {
   });
 
   it('should render a minus icon for incorrect answers', () => {
-    const { getByTestId, debug } = renderComponent({
+    const { getByTestId } = renderComponent({
       questions: [questions[1]],
     });
 

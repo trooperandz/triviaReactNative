@@ -8,7 +8,7 @@ describe('TextInput', () => {
     const mockFn = jest.fn();
     const { getByTestId } = render(<TextInput onChangeText={mockFn} />);
 
-    fireEvent.changeText(getByTestId('text-input'), 'content');
+    fireEvent.changeText(getByTestId('text-input'), 'test');
     expect(mockFn).toHaveBeenCalledWith('content');
   });
 });

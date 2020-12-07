@@ -27,11 +27,10 @@ const app = createSlice({
 
 export const { clearAppSliceState, setGlobalError, setUserName } = app.actions;
 
-export const resetGame = (callback: () => void) => {
+export const resetGame = () => {
   return (dispatch: Dispatch) => {
     dispatch(clearAppSliceState());
     dispatch(clearQuestionSliceState());
-    callback && callback();
   };
 };
 

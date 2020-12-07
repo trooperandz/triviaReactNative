@@ -34,6 +34,7 @@ export const {
 } = questions.actions;
 
 export const getTriviaQuestions = (params: any, callback?: () => void) => {
+  console.log('called getTriviaQuestions');
   return async (dispatch: Dispatch) => {
     try {
       const response = await triviaAPI.get('/', { params });
