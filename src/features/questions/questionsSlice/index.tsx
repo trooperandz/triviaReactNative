@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { setGlobalError } from 'features/app/appSlice';
+import { Question, QuestionsSliceState } from './types';
 import { triviaAPI } from 'utils';
 import * as RootNavigation from 'utils/navigation';
 
@@ -13,10 +14,16 @@ const questions = createSlice({
   name: 'questions',
   initialState,
   reducers: {
-    receiveTriviaQuestions(state, action) {
+    receiveTriviaQuestions(
+      state: { questions: Question[] },
+      action: PayloadAction<{ questions: Question[] }>,
+    ) {
       state.questions = action.payload.questions;
     },
-    updateTriviaQuestion(state, action) {
+    updateTriviaQuestion(
+      state,
+      action: PayloadAction<{ index: number; value: string }>,
+    ) {
       const { index, value } = action.payload;
       // @ts-ignore
       state.questions[index].selected_answer = value;
@@ -34,7 +41,6 @@ export const {
 } = questions.actions;
 
 export const getTriviaQuestions = (params: any, callback?: () => void) => {
-  console.log('called getTriviaQuestions');
   return async (dispatch: Dispatch) => {
     try {
       const response = await triviaAPI.get('/', { params });

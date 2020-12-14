@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { clearQuestionSliceState } from 'features/questions/questionsSlice';
@@ -12,10 +12,10 @@ const app = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setGlobalError(state, action) {
+    setGlobalError(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
-    setUserName(state, action) {
+    setUserName(state, action: PayloadAction<{ userName: string }>) {
       state.userName = action.payload.userName;
     },
     clearAppSliceState(state) {

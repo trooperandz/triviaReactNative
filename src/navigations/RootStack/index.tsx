@@ -18,7 +18,9 @@ export const RootStack = () => {
       <Stack.Screen
         name="Results"
         component={ResultsScreen}
-        options={{ animationEnabled: false }}
+        options={{
+          animationEnabled: false,
+        }}
       />
     </Stack.Navigator>
   );
