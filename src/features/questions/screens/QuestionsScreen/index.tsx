@@ -39,7 +39,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
 
   const setSliderPage = (e: any) => {
     const { x } = e.nativeEvent.contentOffset;
-    const indexOfNextScreen = Math.floor(x / width);
+    const indexOfNextScreen = Math.round(x / width);
 
     if (indexOfNextScreen !== pageIndex) {
       setPageIndex(indexOfNextScreen);
