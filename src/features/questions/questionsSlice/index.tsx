@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { setGlobalError } from 'features/app/appSlice';
-import { Question, QuestionsSliceState } from './types';
+import { Question } from './types';
 import { triviaAPI } from 'utils';
 import * as RootNavigation from 'utils/navigation';
 

@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native';
 import { AllHtmlEntities } from 'html-entities';
 import { Icon } from 'react-native-eva-icons';
 
-import { Question } from 'features/questions/types';
+import { Question } from 'features/questions/questionsSlice/types';
 import { ResultsListProps } from './types';
 import * as S from './styles';
 

@@ -4,6 +4,7 @@ import { TextInput as Input, View } from 'react-native';
 import SegmentedControl from '@react-native-community/segmented-control';
 import SplashScreen from 'react-native-splash-screen';
 
+import { SafeArea } from 'components/SafeArea';
 import { Header } from 'components/Header';
 import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
@@ -92,78 +93,80 @@ export const HomeScreen = () => {
   };
 
   return (
-    <>
-      <Header />
-      <S.ScrollContainer contentContainerStyle={styles.contentContainerStyle}>
-        <GS.ScreenContainer style={styles.screenContainer}>
-          <FadeInView duration={400}>
-            <>
-              <View>
-                <GS.Heading>Select Your Trivia</GS.Heading>
+    <SafeArea>
+      <>
+        <Header />
+        <S.ScrollContainer contentContainerStyle={styles.contentContainerStyle}>
+          <GS.ScreenContainer style={styles.screenContainer}>
+            <FadeInView duration={400}>
+              <>
+                <View>
+                  <GS.Heading>Select Your Trivia</GS.Heading>
 
-                <S.LabelWrapper>
-                  <S.FormLabel>First Name</S.FormLabel>
-                  {formErrors.userFirstName ? (
-                    <S.Error testID="error-name">
-                      {formErrors.userFirstName}
-                    </S.Error>
-                  ) : null}
-                </S.LabelWrapper>
-                <TextInput
-                  ref={inputRef}
-                  onChangeText={handleOnChangeText}
-                  hasError={formErrors.userFirstName}
-                />
-                <S.Spacer size={16} />
+                  <S.LabelWrapper>
+                    <S.FormLabel>First Name</S.FormLabel>
+                    {formErrors.userFirstName ? (
+                      <S.Error testID="error-name">
+                        {formErrors.userFirstName}
+                      </S.Error>
+                    ) : null}
+                  </S.LabelWrapper>
+                  <TextInput
+                    ref={inputRef}
+                    onChangeText={handleOnChangeText}
+                    hasError={formErrors.userFirstName}
+                  />
+                  <S.Spacer size={16} />
 
-                <S.FormLabel>Total Questions</S.FormLabel>
-                <SegmentedControl
-                  values={questionCountOptions}
-                  selectedIndex={questionCount}
-                  activeTextColor="#51a7f9"
-                  onChange={(event) =>
-                    setQuestionCount(event.nativeEvent.selectedSegmentIndex)
-                  }
-                />
-                <S.Spacer size={20} />
-                <S.LabelWrapper>
-                  <S.FormLabel>Select Category</S.FormLabel>
-                  {formErrors.category ? (
-                    <S.Error testID="error-category">
-                      {formErrors.category}
-                    </S.Error>
-                  ) : null}
-                </S.LabelWrapper>
-                <RadioGroup
-                  onSelect={handleOnPressRadio}
-                  options={radioOptions}
-                />
-                <S.Spacer size={20} />
+                  <S.FormLabel>Total Questions</S.FormLabel>
+                  <SegmentedControl
+                    values={questionCountOptions}
+                    selectedIndex={questionCount}
+                    activeTextColor="#51a7f9"
+                    onChange={(event) =>
+                      setQuestionCount(event.nativeEvent.selectedSegmentIndex)
+                    }
+                  />
+                  <S.Spacer size={20} />
+                  <S.LabelWrapper>
+                    <S.FormLabel>Select Category</S.FormLabel>
+                    {formErrors.category ? (
+                      <S.Error testID="error-category">
+                        {formErrors.category}
+                      </S.Error>
+                    ) : null}
+                  </S.LabelWrapper>
+                  <RadioGroup
+                    onSelect={handleOnPressRadio}
+                    options={radioOptions}
+                  />
+                  <S.Spacer size={20} />
 
-                <S.FormLabel>Difficulty Level</S.FormLabel>
-                <SegmentedControl
-                  values={difficultyLevelOptions}
-                  selectedIndex={difficultyLevel}
-                  activeTextColor="#51a7f9"
-                  onChange={(event) =>
-                    setDifficultyLevel(event.nativeEvent.selectedSegmentIndex)
-                  }
-                />
-              </View>
-              <View>
-                <S.Spacer size={32} />
-                <Button
-                  type="primary"
-                  onPress={handleOnPressSubmit}
-                  style={styles.button}
-                  isLoading={isLoading}>
-                  Begin
-                </Button>
-              </View>
-            </>
-          </FadeInView>
-        </GS.ScreenContainer>
-      </S.ScrollContainer>
-    </>
+                  <S.FormLabel>Difficulty Level</S.FormLabel>
+                  <SegmentedControl
+                    values={difficultyLevelOptions}
+                    selectedIndex={difficultyLevel}
+                    activeTextColor="#51a7f9"
+                    onChange={(event) =>
+                      setDifficultyLevel(event.nativeEvent.selectedSegmentIndex)
+                    }
+                  />
+                </View>
+                <View>
+                  <S.Spacer size={32} />
+                  <Button
+                    type="primary"
+                    onPress={handleOnPressSubmit}
+                    style={styles.button}
+                    isLoading={isLoading}>
+                    Begin
+                  </Button>
+                </View>
+              </>
+            </FadeInView>
+          </GS.ScreenContainer>
+        </S.ScrollContainer>
+      </>
+    </SafeArea>
   );
 };
