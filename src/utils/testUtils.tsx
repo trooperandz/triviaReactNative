@@ -34,11 +34,10 @@ const initialState = {
 
 export const renderWithProvider = (
   children: JSX.Element,
-  state: { [key: string]: any },
+  state: { [key: string]: any } | null,
   store?: any,
 ) => {
   const testStore = { ...initialState, ...state };
-  // const store = store || mockStore(testStore);
 
   return render(
     <Provider store={store || mockStore(testStore)}>{children}</Provider>,
