@@ -94,7 +94,7 @@ export const ResultsList = (props: ResultsListProps) => {
     <FlatList
       data={questions}
       renderItem={renderCard}
-      keyExtractor={(item) => item.correct_answer}
+      keyExtractor={({ question }: { question: string }) => question}
       ListHeaderComponent={() => (
         <S.ListHeader>
           <S.ListHeaderTitle>
