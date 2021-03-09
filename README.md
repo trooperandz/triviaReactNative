@@ -7,6 +7,7 @@
 - TypeScript
 - Styled Components
 - Redux Toolkit
+- React Native testing library
 
 #### Demo:
 
