@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 
-import { RadioGroup } from '../index';
+import { RadioGroup, RADIO_WRAPPER_TEST_ID } from '../index';
 
 const defaultProps = {
   options: [
@@ -29,7 +29,7 @@ describe('RadioGroup', () => {
   it('should render the correct number of radio buttons', () => {
     const { queryAllByTestId } = renderComponent();
 
-    expect(queryAllByTestId('radio-wrapper')).toHaveLength(3);
+    expect(queryAllByTestId(RADIO_WRAPPER_TEST_ID)).toHaveLength(3);
   });
 
   it('should fire the onPress event with the correct arguments', () => {

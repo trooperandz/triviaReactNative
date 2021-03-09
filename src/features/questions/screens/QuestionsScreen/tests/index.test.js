@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import { renderWithProvider } from 'utils/testUtils';
 
-import { QuestionsScreen } from '../index';
+import { QuestionsScreen, QUESTION_SCREEN_TEST_ID } from '../index';
 
 const renderComponent = (props) => {
   return renderWithProvider(<QuestionsScreen {...props} />);
@@ -12,7 +12,7 @@ describe('QuestionsScreen', () => {
   it('should render the correct number of questions', () => {
     const { queryAllByTestId } = renderComponent();
 
-    expect(queryAllByTestId('question-screen')).toHaveLength(2);
+    expect(queryAllByTestId(QUESTION_SCREEN_TEST_ID)).toHaveLength(2);
   });
 
   it('should reveal the submit button and execute navigate on press', () => {

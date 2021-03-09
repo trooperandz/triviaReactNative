@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 
 export const ScrollContainer = styled.ScrollView`
   flex: 1;
+  background-color: #fff;
 `;
 
 export const LabelWrapper = styled.View`

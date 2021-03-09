@@ -14,10 +14,6 @@ const navigationButtonStyle = css`
   bottom: 50px;
 `;
 
-export const ScrollContainer = styled.ScrollView`
-  flex: 1;
-`;
-
 export const QuestionContainer = styled.View.attrs((props) => ({
   height: props.height,
   width: props.width,
@@ -33,7 +29,7 @@ export const QuestionWrapper = styled.View`
 
 export const PaginationWrapper = styled.View`
   position: absolute;
-  bottom: 20px;
+  bottom: 35px;
   left: 0;
   right: 0;
   justify-content: center;

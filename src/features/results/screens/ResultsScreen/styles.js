@@ -6,13 +6,6 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const Title = styled.Text`
-  margin-top: 18px;
-  font-size: 18px;
-  text-align: center;
-  color: gray;
-`;
-
 export const styles = StyleSheet.create({
   button: {
     borderRadius: 24,
@@ -20,6 +13,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
     marginBottom: 0,
-    bottom: 24,
+    bottom: 40,
   },
 });

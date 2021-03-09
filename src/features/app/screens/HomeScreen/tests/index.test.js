@@ -7,7 +7,13 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 const store = mockStore({});
 
-import { HomeScreen } from '../index';
+import {
+  HomeScreen,
+  ERROR_CATEGORY_TEST_ID,
+  ERROR_NAME_TEST_ID,
+} from '../index';
+import { BUTTON_TEST_ID } from 'components/Button';
+import { TEXT_INPUT_TEST_ID } from 'components/TextInput';
 import { renderWithProvider } from 'utils/testUtils';
 
 describe('HomeScreen', () => {
@@ -18,8 +24,8 @@ describe('HomeScreen', () => {
 
   beforeEach(() => {
     renderedComponent = renderWithProvider(<HomeScreen />, null, store);
-    button = renderedComponent.getByTestId('button');
-    input = renderedComponent.getByTestId('text-input');
+    button = renderedComponent.getByTestId(BUTTON_TEST_ID);
+    input = renderedComponent.getByTestId(TEXT_INPUT_TEST_ID);
     radioButton = renderedComponent.getByText('Sports');
   });
 
@@ -32,7 +38,7 @@ describe('HomeScreen', () => {
     act(() => fireEvent.changeText(input, 'Matt'));
     act(() => fireEvent.press(button));
 
-    expect(getByTestId('error-category')).toBeDefined();
+    expect(getByTestId(ERROR_CATEGORY_TEST_ID)).toBeDefined();
     expect(store.getActions()[0].type).toEqual('app/setGlobalError');
   });
 
@@ -42,7 +48,7 @@ describe('HomeScreen', () => {
     act(() => fireEvent.press(radioButton));
     act(() => fireEvent.press(button));
 
-    expect(getByTestId('error-name')).toBeDefined();
+    expect(getByTestId(ERROR_NAME_TEST_ID)).toBeDefined();
     expect(store.getActions()[0].type).toEqual('app/setGlobalError');
   });
 
@@ -53,7 +59,7 @@ describe('HomeScreen', () => {
     act(() => fireEvent.changeText(input, 'M123'));
     act(() => fireEvent.press(button));
 
-    expect(getByTestId('error-name')).toBeDefined();
+    expect(getByTestId(ERROR_NAME_TEST_ID)).toBeDefined();
     expect(store.getActions()[0].type).toEqual('app/setGlobalError');
   });
 

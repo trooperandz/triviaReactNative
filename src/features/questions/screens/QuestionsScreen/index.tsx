@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Dimensions, ScrollView, StatusBar } from 'react-native';
+import { Dimensions, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from 'react-native-eva-icons';
 import { AllHtmlEntities } from 'html-entities';
@@ -9,13 +9,18 @@ import { Header } from 'components/Header';
 import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
+
 import { updateSelectedAnswer } from 'features/questions/questionsSlice';
 import { Question, QuestionsSliceState } from '../../questionsSlice/types';
 import { QuestionsScreenProps } from './types';
+
 import * as GS from 'styles';
 import * as S from './styles';
 
 const { styles } = S;
+
+export const QUESTION_SCREEN_TEST_ID = 'question-screen';
+export const PAGINATION_DOT_TEST_ID = 'pagination-dot';
 
 const entities = new AllHtmlEntities();
 const RightArrowIcon = () => (
@@ -77,7 +82,6 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
     <SafeArea>
       <>
         <Header backOption onPress={handleNavigationBackPress} />
-        <StatusBar barStyle="dark-content" />
         <ScrollView
           style={styles.scrollWrapper}
           horizontal={true}
@@ -100,7 +104,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
 
             return (
               <S.QuestionContainer
-                testID="question-screen"
+                testID={QUESTION_SCREEN_TEST_ID}
                 width={width}
                 height={height}
                 key={i}>
@@ -146,7 +150,7 @@ export const QuestionsScreen = (props: QuestionsScreenProps) => {
               key={index}
               isCurrentQuestion={index === pageIndex}
               isAnswered={question.selected_answer ? true : false}
-              testID="pagination-dot"
+              testID={PAGINATION_DOT_TEST_ID}
             />
           ))}
         </S.PaginationWrapper>

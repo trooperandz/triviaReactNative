@@ -1,5 +1,5 @@
 import React, { ReactChild } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
 interface Props {
   children: ReactChild;
@@ -8,14 +8,18 @@ interface Props {
 
 export const SafeArea = (props: Props) => {
   return (
-    <SafeAreaView style={[styles.safeArea, props.style]}>
+    <>
+      <SafeAreaView style={[styles.safeArea, props.style]} />
+      <StatusBar backgroundColor="#51a7f9" barStyle="light-content" />
       {props.children}
-    </SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: '#fff' }} />
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
+    // flex: 1,
+    backgroundColor: '#51a7f9',
   },
 });

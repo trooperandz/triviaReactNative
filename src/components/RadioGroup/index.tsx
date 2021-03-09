@@ -8,6 +8,8 @@ import { RadioGroupProps } from './types';
 
 const entities = new AllHtmlEntities();
 
+export const RADIO_WRAPPER_TEST_ID = 'radio-wrapper';
+
 export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const { options, onSelect, questionIndex } = props;
 
@@ -17,7 +19,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
         const index: number = questionIndex !== undefined ? questionIndex : i;
 
         return (
-          <RadioWrapper key={value} testID="radio-wrapper">
+          <RadioWrapper key={value} testID={RADIO_WRAPPER_TEST_ID}>
             <RadioWithLabel onPress={() => onSelect(value, index)}>
               <RadioButton isSelected={selected_answer === value} />
               <RadioLabel>{entities.decode(title)}</RadioLabel>

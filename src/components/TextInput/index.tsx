@@ -8,6 +8,8 @@ type Props = {
   hasError: string | undefined;
 };
 
+export const TEXT_INPUT_TEST_ID = 'text-input';
+
 export const TextInput = forwardRef((props: Props, ref: Ref<Input>) => {
   const { hasError, onChangeText, ...rest } = props;
 
@@ -16,7 +18,7 @@ export const TextInput = forwardRef((props: Props, ref: Ref<Input>) => {
       <S.NameInput
         hasError={hasError}
         onChangeText={(text: string) => onChangeText(text)}
-        testID="text-input"
+        testID={TEXT_INPUT_TEST_ID}
         ref={ref}
         {...rest}
       />

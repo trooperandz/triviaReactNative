@@ -48,6 +48,19 @@ export const Question = styled.Text`
   font-size: 16px;
 `;
 
+export const ListHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+`;
+
+export const ListHeaderTitle = styled.Text`
+  font-size: 18px;
+  text-align: center;
+  color: gray;
+`;
+
 export const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 24,

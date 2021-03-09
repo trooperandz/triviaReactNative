@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'components/Button';
 import { setGlobalError } from 'features/app/appSlice';
-import { AppSliceState } from 'features/app/types';
+import { AppSliceState } from 'features/app/appSlice/types';
 import * as S from './styles';
 
 const { styles } = S;
+
+export const ERROR_MODAL_TEST_ID = 'error-modal';
 
 export default () => {
   const error = useSelector((state: AppSliceState) => state.app.error);
@@ -21,7 +23,7 @@ export default () => {
 
   return (
     <Modal animationType="slide" transparent={true}>
-      <S.Container testID="error-modal">
+      <S.Container testID={ERROR_MODAL_TEST_ID}>
         <S.Alert style={styles.alert}>
           <S.AlertText>{error}</S.AlertText>
           <Button type="primary" onPress={handleClose} style={styles.button}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 
-import { Button } from '../index';
+import { Button, BUTTON_SPINNER_TEST_ID } from '../index';
 
 const renderComponent = (props) => {
   return render(
@@ -29,7 +29,7 @@ describe('Button', () => {
   it('should only show the loading spinner if loading is true', () => {
     const { getByTestId, queryByText } = renderComponent({ isLoading: true });
 
-    expect(getByTestId('button-spinner')).toBeDefined();
+    expect(getByTestId(BUTTON_SPINNER_TEST_ID)).toBeDefined();
     expect(queryByText('Test Text')).toBeNull();
   });
 });

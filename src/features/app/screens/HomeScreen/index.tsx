@@ -10,6 +10,7 @@ import { FadeInView } from 'components/FadeInView';
 import { RadioGroup } from 'components/RadioGroup';
 import { Button } from 'components/Button';
 import { TextInput } from 'components/TextInput';
+
 import { getTriviaQuestions } from 'features/questions/questionsSlice';
 import { setGlobalError, setUserName } from 'features/app/appSlice';
 import {
@@ -19,10 +20,14 @@ import {
 } from '../../utils';
 import { RadioOption } from 'components/RadioGroup/types';
 import { FormErrors } from './types';
+
 import * as S from './styles';
 import * as GS from 'styles';
 
 const { styles } = S;
+
+export const ERROR_CATEGORY_TEST_ID = 'error-category';
+export const ERROR_NAME_TEST_ID = 'error-name';
 
 export const HomeScreen = () => {
   const [questionCount, setQuestionCount] = useState(0);
@@ -106,7 +111,7 @@ export const HomeScreen = () => {
                   <S.LabelWrapper>
                     <S.FormLabel>First Name</S.FormLabel>
                     {formErrors.userFirstName ? (
-                      <S.Error testID="error-name">
+                      <S.Error testID={ERROR_NAME_TEST_ID}>
                         {formErrors.userFirstName}
                       </S.Error>
                     ) : null}
@@ -131,7 +136,7 @@ export const HomeScreen = () => {
                   <S.LabelWrapper>
                     <S.FormLabel>Select Category</S.FormLabel>
                     {formErrors.category ? (
-                      <S.Error testID="error-category">
+                      <S.Error testID={ERROR_CATEGORY_TEST_ID}>
                         {formErrors.category}
                       </S.Error>
                     ) : null}

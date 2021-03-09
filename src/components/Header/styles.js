@@ -7,13 +7,13 @@ export const Container = styled.View`
   align-items: center;
   height: 60px;
   width: 100%;
-  background-color: #fff;
+  background-color: #51a7f9;
   z-index: 1;
 `;
 
 export const Heading = styled.Text`
   font-size: 26px;
-  color: #51a7f9;
+  color: #fff;
 `;
 
 export const BackIcon = styled.TouchableOpacity`
@@ -26,10 +26,10 @@ export const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 2,
     },
     shadowOpacity: 0.15,
-    shadowRadius: 1.41,
+    shadowRadius: 1,
     elevation: 2,
   },
 });

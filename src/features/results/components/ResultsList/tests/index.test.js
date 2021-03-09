@@ -1,7 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
 
-import { ResultsList } from '../index';
+import { renderWithProvider } from 'utils/testUtils';
+
+import {
+  ResultsList,
+  CHECKMARK_ICON_TEST_ID,
+  CORRECT_ANSWER_TEST_ID,
+  MINUS_ICON_TEST_ID,
+  RESULTS_CARD_TEST_ID,
+} from '../index';
 
 const questions = [
   {
@@ -24,13 +31,14 @@ const questions = [
   },
 ];
 
-const renderComponent = (props) => render(<ResultsList {...props} />);
+const renderComponent = (props) =>
+  renderWithProvider(<ResultsList {...props} />);
 
 describe('ResultsList', () => {
   it('should render the correct number of cards', () => {
     const { queryAllByTestId } = renderComponent({ questions });
 
-    expect(queryAllByTestId('results-card')).toHaveLength(2);
+    expect(queryAllByTestId(RESULTS_CARD_TEST_ID)).toHaveLength(2);
   });
 
   it('should render a checkmark icon for correct answers', () => {
@@ -38,7 +46,7 @@ describe('ResultsList', () => {
       questions: [questions[0]],
     });
 
-    expect(getByTestId('checkmark-icon')).toBeDefined();
+    expect(getByTestId(CHECKMARK_ICON_TEST_ID)).toBeDefined();
   });
 
   it('should render a minus icon for incorrect answers', () => {
@@ -46,7 +54,7 @@ describe('ResultsList', () => {
       questions: [questions[1]],
     });
 
-    expect(getByTestId('minus-icon')).toBeDefined();
+    expect(getByTestId(MINUS_ICON_TEST_ID)).toBeDefined();
   });
 
   it('should render the correct answer text if the incorrect answer was selected', () => {
@@ -54,6 +62,6 @@ describe('ResultsList', () => {
       questions: [questions[1]],
     });
 
-    expect(getByTestId('correct-answer')).toBeDefined();
+    expect(getByTestId(CORRECT_ANSWER_TEST_ID)).toBeDefined();
   });
 });

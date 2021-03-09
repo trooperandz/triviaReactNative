@@ -12,6 +12,9 @@ type Props = {
   type: string;
 };
 
+export const BUTTON_TEST_ID = 'button';
+export const BUTTON_SPINNER_TEST_ID = 'button-spinner';
+
 export const Button = (props: Props) => {
   const { isLoading, onPress, style, type, children } = props;
 
@@ -28,11 +31,11 @@ export const Button = (props: Props) => {
 
   return (
     <TouchableOpacity
-      testID="button"
+      testID={BUTTON_TEST_ID}
       style={[styles.button, backgroundStyle, borderStyle, { ...style }]}
       onPress={onPress}>
       {isLoading ? (
-        <View testID="button-spinner">
+        <View testID={BUTTON_SPINNER_TEST_ID}>
           <MaterialIndicator color={spinnerColor} size={30} />
         </View>
       ) : (
