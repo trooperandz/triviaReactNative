@@ -23,6 +23,7 @@ import { FormErrors } from './types';
 
 import * as S from './styles';
 import * as GS from 'styles';
+import colors from 'styles/colors';
 
 const { styles } = S;
 
@@ -127,7 +128,7 @@ export const HomeScreen = () => {
                   <SegmentedControl
                     values={questionCountOptions}
                     selectedIndex={questionCount}
-                    activeTextColor="#51a7f9"
+                    activeTextColor={colors.primary}
                     onChange={(event) =>
                       setQuestionCount(event.nativeEvent.selectedSegmentIndex)
                     }
@@ -151,7 +152,7 @@ export const HomeScreen = () => {
                   <SegmentedControl
                     values={difficultyLevelOptions}
                     selectedIndex={difficultyLevel}
-                    activeTextColor="#51a7f9"
+                    activeTextColor={colors.primary}
                     onChange={(event) =>
                       setDifficultyLevel(event.nativeEvent.selectedSegmentIndex)
                     }

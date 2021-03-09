@@ -16,6 +16,7 @@ export const TextInput = forwardRef((props: Props, ref: Ref<Input>) => {
   return (
     <View>
       <S.NameInput
+        autoCapitalize="words"
         hasError={hasError}
         onChangeText={(text: string) => onChangeText(text)}
         testID={TEXT_INPUT_TEST_ID}

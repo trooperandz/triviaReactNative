@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4aa',
     padding: 10,
     height: 45,
     borderRadius: 8,
@@ -16,21 +17,21 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
   },
   primaryBorder: {
-    borderColor: '#51a7f9',
+    borderColor: colors.buttonPrimary,
   },
   secondaryBorder: {
-    borderColor: '#fff',
+    borderColor: colors.buttonSecondary,
   },
   primaryBackground: {
-    backgroundColor: '#51a7f9',
+    backgroundColor: colors.buttonPrimary,
   },
   secondaryBackground: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.buttonSecondary,
   },
   primaryText: {
-    color: '#fff',
+    color: colors.onButtonPrimary,
   },
   secondaryText: {
-    color: '#51a7f9',
+    color: colors.onButtonSecondary,
   },
 });

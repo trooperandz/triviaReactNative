@@ -8,6 +8,7 @@ import { Question } from 'features/questions/questionsSlice/types';
 import { AppSliceState } from 'features/app/appSlice/types';
 import { ResultsListProps } from './types';
 
+import colors from 'styles/colors';
 import * as S from './styles';
 
 export const CHECKMARK_ICON_TEST_ID = 'checkmark-icon';
@@ -23,13 +24,18 @@ const CheckMarkIcon = () => (
       name="checkmark-circle-2-outline"
       width={32}
       height={32}
-      fill="#329999"
+      fill={colors.success}
     />
   </View>
 );
 const MinusIcon = () => (
   <View testID={MINUS_ICON_TEST_ID}>
-    <Icon name="minus-circle-outline" width={32} height={32} fill="#993232" />
+    <Icon
+      name="minus-circle-outline"
+      width={32}
+      height={32}
+      fill={colors.errorSecondary}
+    />
   </View>
 );
 

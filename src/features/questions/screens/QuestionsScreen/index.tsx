@@ -16,6 +16,7 @@ import { QuestionsScreenProps } from './types';
 
 import * as GS from 'styles';
 import * as S from './styles';
+import colors from 'styles/colors';
 
 const { styles } = S;
 
@@ -24,10 +25,20 @@ export const PAGINATION_DOT_TEST_ID = 'pagination-dot';
 
 const entities = new AllHtmlEntities();
 const RightArrowIcon = () => (
-  <Icon name="chevron-right-outline" width={32} height={32} fill="#fff" />
+  <Icon
+    name="chevron-right-outline"
+    width={32}
+    height={32}
+    fill={colors.onButtonPrimary}
+  />
 );
 const LeftArrowIcon = () => (
-  <Icon name="chevron-left-outline" width={32} height={32} fill="#fff" />
+  <Icon
+    name="chevron-left-outline"
+    width={32}
+    height={32}
+    fill={colors.onButtonPrimary}
+  />
 );
 
 export const QuestionsScreen = (props: QuestionsScreenProps) => {

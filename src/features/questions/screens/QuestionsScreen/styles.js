@@ -1,16 +1,18 @@
 import { StyleSheet } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
+import colors from 'styles/colors';
+
 const navigationButtonStyle = css`
   align-items: center;
   justify-content: center;
   position: absolute;
   height: 42px;
   width: 42px;
-  background-color: #51a7f9;
+  background-color: ${colors.buttonPrimary};
   border-radius: 24px;
   border-width: 1px;
-  border-color: #51a7f9;
+  border-color: ${colors.buttonPrimary};
   bottom: 50px;
 `;
 
@@ -18,7 +20,7 @@ export const QuestionContainer = styled.View.attrs((props) => ({
   height: props.height,
   width: props.width,
 }))`
-  background-color: #fff;
+  background-color: ${colors.backgroundPrimary};
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
 `;
@@ -44,17 +46,19 @@ export const PaginationDot = styled.View.attrs((props) => ({
   height: 10px;
   width: 10px;
   border-radius: 5px;
-  background-color: ${(props) => (props.isAnswered ? '#0898a0' : '#fff')};
-  border: ${(props) => (props.isAnswered ? 'none' : '2px solid #0898a0')};
+  background-color: ${(props) =>
+    props.isAnswered ? colors.textSecondary : colors.surfaceSecondary};
+  border: ${(props) =>
+    props.isAnswered ? 'none' : `2px solid ${colors.textSecondary}`};
   margin-left: 10px;
-  opacity: ${(props) => (props.isCurrentQuestion ? 1 : 0.2)};
+  opacity: ${(props) => (props.isCurrentQuestion ? 0.7 : 0.2)};
 `;
 
 export const Question = styled.Text`
   flex-wrap: wrap;
   font-size: 20px;
   margin-bottom: 24px;
-  color: #0a0a0a;
+  color: ${colors.textPrimary};
 `;
 
 export const RightButton = styled.TouchableOpacity`
@@ -91,8 +95,8 @@ export const styles = StyleSheet.create({
     height: 40,
     padding: 0,
     marginBottom: 0,
-    backgroundColor: '#fff',
-    borderColor: '#51a7f9',
+    backgroundColor: colors.buttonSecondary,
+    borderColor: colors.primary,
     borderWidth: 1.5,
   },
 });

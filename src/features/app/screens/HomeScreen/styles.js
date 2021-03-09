@@ -1,9 +1,11 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export const ScrollContainer = styled.ScrollView`
   flex: 1;
-  background-color: #fff;
+  background-color: ${colors.backgroundPrimary};
 `;
 
 export const LabelWrapper = styled.View`
@@ -14,7 +16,7 @@ export const LabelWrapper = styled.View`
 export const FormLabel = styled.Text`
   margin-bottom: 8px;
   font-size: 16px;
-  color: #0a0a0a;
+  color: ${colors.textPrimary};
 `;
 
 export const Spacer = styled.View.attrs((props) => ({
@@ -31,7 +33,7 @@ export const Error = styled.Text`
   margin-left: 12px;
   margin-bottom: 8px;
   font-size: 14px;
-  color: #cc4b37;
+  color: ${colors.errorPrimary};
 `;
 
 export const styles = StyleSheet.create({

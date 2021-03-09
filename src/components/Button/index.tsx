@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIndicator } from 'react-native-indicators';
 
 import { styles } from './styles';
+import colors from 'styles/colors';
 
 type Props = {
   children: React.ReactChild;
@@ -27,7 +28,8 @@ export const Button = (props: Props) => {
   const borderStyle =
     type === 'primary' ? styles.primaryBorder : styles.secondaryBorder;
 
-  const spinnerColor = type === 'primary' ? '#fff' : '#51a7f9';
+  const spinnerColor =
+    type === 'primary' ? colors.onButtonPrimary : colors.onButtonSecondary;
 
   return (
     <TouchableOpacity
